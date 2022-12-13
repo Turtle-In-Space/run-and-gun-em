@@ -11,53 +11,89 @@ public class LevelCreator : MonoBehaviour
     [SerializeField] private GameObject door;
     [SerializeField] private RoomData[] roomData;
 
-    private readonly Vector2[] directionList = { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
+    private int prevRoomRotation = 0;
+    private Vector3 prevRoomPos = Vector3.zero;
+    private readonly int roomLayerMask = 1 << 11;
+    private List<DoorData> newDoors = new List<DoorData>();
 
-    
+
     private void Start()
     {
-        GenerateLevel(3);
-        /*Instantiate(player);
+        GenerateLevel();
+        Instantiate(player, Vector3.zero, Quaternion.identity);
         Instantiate(MainCamera);
-        Instantiate(HUD);*/
+        Instantiate(HUD);
     }
 
-
-    public void GenerateLevel(int numberOfRooms)
+    public void GenerateLevel()
     {
+        int numberOfRooms = Random.Range(6, 9);
+
         Instantiate(roomData[0].roomPrefab, transform);
-        DoorData door = roomData[0].doorData[0];
+        newDoors.Add(roomData[0].doorData[0]);
 
         for (int i = 0; i < numberOfRooms; i++)
         {
-            door = SpawnRoom(Random.Range(1, roomData.Length), door);
+            DoorData newDoor = newDoors[Random.Range(0, newDoors.Count)];
+            SpawnRoom(Random.Range (1, roomData.Length), newDoor);
         }
+
+        SpawnRoom(0, newDoors[Random.Range(0, newDoors.Count)]);
+
+    }    
+
+    private void SpawnRoom(int roomID, DoorData pastDoor)
+    {
+        RoomData currentRoom = roomData[roomID];
+        int newDoorID = Random.Range(0, currentRoom.doorData.Length);
+        DoorData connectedDoor = currentRoom.doorData[newDoorID];
+
+        int newRot = (2 - (int)connectedDoor.direction + prevRoomRotation + (int)pastDoor.direction) % 4;
+        Vector2 prevDoorPos = pastDoor.pos.Rotate(90 * prevRoomRotation);
+        Vector2 newDoorPos = connectedDoor.pos.Rotate(90 * newRot);
+        Vector2 roomPos = prevRoomPos + (Vector3)prevDoorPos - (Vector3)newDoorPos;
+        Quaternion roomRot = Quaternion.Euler(0, 0, 90 * newRot);
+
+        GameObject room = Instantiate(currentRoom.roomPrefab, roomPos, roomRot, transform);
+
+        if (IsRoomObstructed(room.GetComponent<Collider2D>()))
+        {
+            print("is in the way");
+            Destroy(room);
+            return;
+        }
+        
+        prevRoomPos = room.transform.position;
+        prevRoomRotation = newRot;
+       
+        AddDoors(roomID, newDoorID);
     }
 
-    private DoorData SpawnRoom(int roomNum, DoorData pastDoor)
+    private bool IsRoomObstructed(Collider2D newestRoom)
     {
-        GameObject room = Instantiate(roomData[roomNum].roomPrefab, pastDoor.pos, Quaternion.identity, transform);
-        int doorNum = Random.Range(0, roomData[roomNum].doorData.Length);
-        DoorData door = roomData[roomNum].doorData[doorNum];
+        ContactFilter2D filter = new ContactFilter2D();
+        List<Collider2D> results = new List<Collider2D>();
+        filter.SetLayerMask(roomLayerMask);
 
-
-        int desiredDirection = (((int)pastDoor.direction) + 2) & 3;
-        int directionDiffrence = (desiredDirection - (int)door.direction) & 3;
-        float distance = door.pos.magnitude + pastDoor.pos.magnitude;
-
-        room.transform.SetPositionAndRotation(-directionList[desiredDirection] * distance, Quaternion.Euler(0, 0, directionDiffrence * 90));
-
-        DoorData[] newDoors = new DoorData[roomData[roomNum].doorData.Length];
-        Debug.Log(roomData[roomNum].doorData.Length);
-        for (int i = 0; i < roomData[roomNum].doorData.Length; i++)
+        newestRoom.OverlapCollider(filter, results);
+        if (results.Count != 0)
         {
-            Debug.Log(i);
-            if (i != doorNum)
-            {
-                newDoors[i] = roomData[roomNum].doorData[i];
-            }
+            Debug.Log(newestRoom.transform.position);
+            return true;
         }
 
-        return newDoors[Random.Range(0, roomData[roomNum].doorData.Length)];
+        return false;
+    }
+
+    private void AddDoors(int roomID, int newDoorID)
+    {
+        newDoors.Clear();
+        for (int i = 0; i < roomData[roomID].doorData.Length; i++)
+        {
+            if (i != newDoorID)
+            {
+                newDoors.Add(roomData[roomID].doorData[i]);
+            }
+        }
     }
 }

@@ -7,7 +7,7 @@ public enum DoorDirection
     right,
     top,
     left,
-    down
+    bottom
 }
 
 [System.Serializable]
@@ -21,8 +21,5 @@ public class DoorData
 public class RoomData
 {
     [SerializeField] public DoorData[] doorData;
-    public GameObject roomPrefab;
-
-    
-    
+    public GameObject roomPrefab;    
 }

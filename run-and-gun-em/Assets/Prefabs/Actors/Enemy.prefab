@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 706661820256500831}
   - component: {fileID: 706661820256500830}
   - component: {fileID: 706661820256500824}
-  - component: {fileID: -2788151532781088534}
   - component: {fileID: 6125459363672900706}
+  - component: {fileID: 5998698179548170445}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -123,8 +123,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.16035143, y: -0.12390446}
-  m_Size: {x: 1.3929795, y: 0.99939775}
+  m_Offset: {x: 0.12567915, y: -0.051329993}
+  m_Size: {x: 2.5627334, y: 1.622705}
   m_Direction: 1
 --- !u!114 &706661820256500824
 MonoBehaviour:
@@ -138,8 +138,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b73314d6d6394132b4fce49f6783cae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnSpeed: 0.2
---- !u!114 &-2788151532781088534
+--- !u!95 &6125459363672900706
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706661820256500827}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 02799ef1cbf3c438e825afbebd067501, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5998698179548170445
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,26 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1117175133104654446}
-  bulletPrefab: {fileID: 8796829914936609648, guid: 95840ffcd4565449ab3b26b6df63770f, type: 3}
---- !u!95 &6125459363672900706
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 706661820256500827}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  bulletPrefab: {fileID: 8796829914936609648, guid: c42632008b1ad44dfb99d0d9ae66a24d, type: 3}
 --- !u!1 &2481251786590226373
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,12 +258,16 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 6.170292, y: 3.1692772}
-      - {x: -1.7703238, y: 1.7199781}
-      - {x: -2.4210947, y: -0.25311852}
-      - {x: -1.4980824, y: -1.992401}
-      - {x: 6.64126, y: -2.925453}
-      - {x: 9.367011, y: 0.09980005}
+    - - {x: 23.627388, y: 6.594276}
+      - {x: 17.803902, y: 8.213253}
+      - {x: 5.2974057, y: 8.355614}
+      - {x: -2.2842581, y: 3.822438}
+      - {x: -4.616997, y: -0.25311852}
+      - {x: -2.0587382, y: -3.907975}
+      - {x: 5.0398636, y: -7.157784}
+      - {x: 18.489403, y: -7.391079}
+      - {x: 24.37702, y: -5.150891}
+      - {x: 27.694185, y: 1.0544827}
 --- !u!114 &8874515286948691410
 MonoBehaviour:
   m_ObjectHideFlags: 0

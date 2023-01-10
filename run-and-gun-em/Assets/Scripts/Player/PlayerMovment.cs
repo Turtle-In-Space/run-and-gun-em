@@ -5,14 +5,14 @@ using UnityEngine;
 public class PlayerMovment : MonoBehaviour
 {
     private new Camera camera;
-    [SerializeField] private float moveSpeed = 7f;
+    private int moveSpeed = 10;
 
     private new Rigidbody2D rigidbody;
-    private Animator animator; 
-    
+    private Animator animator;  
 
     Vector2 speed;
     Vector2 mousePos;
+
 
     void Start()
     {
@@ -20,7 +20,6 @@ public class PlayerMovment : MonoBehaviour
         animator = GetComponent<Animator>();
         camera = Camera.main;        
     }
-
 
     void Update()
     {
@@ -31,7 +30,6 @@ public class PlayerMovment : MonoBehaviour
         animator.SetFloat("Speed", speed.magnitude);
         mousePos = camera.ScreenToWorldPoint(Input.mousePosition);
     }
-
 
     private void FixedUpdate()
     {

@@ -10,33 +10,39 @@ public class EnemyWeapon : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     private Animator animator;
 
-    private float bulletSpeed = 30;
-    private float bulletSpreadMultiplier = 2;
-    private float bulletDelay = 0.2f;
+    private readonly float bulletSpeed = 25;
+    private readonly float bulletDelay = 0.4f;
+    private readonly float bulletSpreadMultiplier = 2;
     private float lastShot = 0;
     private int ammoCount = 30;
-    private int newAmmo;
+    
 
-
-    private void Attack()
+    private void Start()
     {
-        //Turn to player
-        //While see player
-        //SHOOT
-
+        animator = GetComponent<Animator>();
     }
-
 
     public void Shoot()
     {
         if (Time.time - lastShot > bulletDelay && ammoCount > 0)
         {
+            animator.SetBool("isShooting", true);
             lastShot = Time.time;
-            newAmmo = ammoCount - 1;
+            ammoCount -= 1;
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
 
-            rigidbody.velocity = firePoint.up * bulletSpeed + UnityEngine.Random.Range(0, bulletSpreadMultiplier) * (UnityEngine.Random.Range(0, 2) * 2 - 1) * firePoint.right;
+            rigidbody.velocity = firePoint.right * bulletSpeed + UnityEngine.Random.Range(0, bulletSpreadMultiplier) * (UnityEngine.Random.Range(0, 2) * 2 - 1) * firePoint.right;
         }
+        else if (ammoCount == 0)
+        {
+            animator.SetBool("isShooting", false);
+            Reload();
+        }
+    }
+
+    public void Reload()
+    {
+        ammoCount = 30;
     }
 }

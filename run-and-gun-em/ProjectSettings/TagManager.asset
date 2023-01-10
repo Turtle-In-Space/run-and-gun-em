@@ -15,12 +15,12 @@ TagManager:
   - Water
   - UI
   - Player
-  - Bullet
+  - PlayerBullet
   - Enemy
   - Items
   - Walls
   - Room
-  - 
+  - EnemyBullet
   - 
   - 
   - 

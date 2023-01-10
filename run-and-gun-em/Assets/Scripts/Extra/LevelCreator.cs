@@ -20,12 +20,12 @@ public class LevelCreator : MonoBehaviour
     private void Start()
     {
         GenerateLevel();
+        Instantiate(HUD);
         Instantiate(player, Vector3.zero, Quaternion.identity);
         Instantiate(MainCamera);
-        Instantiate(HUD);
     }
 
-    public void GenerateLevel()
+    private void GenerateLevel()
     {
         int numberOfRooms = Random.Range(6, 9);
 
@@ -58,7 +58,6 @@ public class LevelCreator : MonoBehaviour
 
         if (IsRoomObstructed(room.GetComponent<Collider2D>()))
         {
-            print("is in the way");
             Destroy(room);
             return;
         }
@@ -77,8 +76,7 @@ public class LevelCreator : MonoBehaviour
 
         newestRoom.OverlapCollider(filter, results);
         if (results.Count != 0)
-        {
-            Debug.Log(newestRoom.transform.position);
+        {            
             return true;
         }
 

@@ -41,8 +41,10 @@ GameObject:
   - component: {fileID: 1461245333297719975}
   - component: {fileID: 1461245333297719974}
   - component: {fileID: 1461245333297719993}
+  - component: {fileID: -705992958101689570}
   - component: {fileID: 1461245333297719992}
-  - component: {fileID: 1461245333297719972}
+  - component: {fileID: 6465153055105949266}
+  - component: {fileID: 7268468544150388320}
   - component: {fileID: 1461245333297719973}
   - component: {fileID: 1461245333297719970}
   m_Layer: 6
@@ -139,6 +141,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-705992958101689570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461245333297719995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7768c999e3e44a4a946db7285a7dd0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1461245333297719992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,8 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44cf8d3067d984e609fe7dbc04d697f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
---- !u!114 &1461245333297719972
+--- !u!114 &6465153055105949266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,12 +174,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1461245333297719995}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89c85c205326e47628dce399942bd7f4, type: 3}
+  m_Script: {fileID: 11500000, guid: e66678da999c14f8d8a7af2a17983073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8796829914936609648, guid: 95840ffcd4565449ab3b26b6df63770f, type: 3}
-  bulletSpreadMultiplier: 2
-  bulletSpeed: 100
+  firePoint: {fileID: 1461245332592189780}
+  animator: {fileID: 1461245333297719970}
+  playerUI: {fileID: 7268468544150388320}
+  bulletSpread: 0
+--- !u!114 &7268468544150388320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461245333297719995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e36bc7cdced644990a73f066425252db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!70 &1461245333297719973
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

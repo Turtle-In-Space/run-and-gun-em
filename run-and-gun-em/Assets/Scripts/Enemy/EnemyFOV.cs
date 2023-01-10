@@ -9,8 +9,8 @@ public class EnemyFOV: MonoBehaviour
     private int wallMask = 1 << 10;
 
     private void OnTriggerStay2D(Collider2D collision)
-    {     
-        if (collision.tag == "Player")
+    {
+        if (collision.CompareTag("Player"))
         {
             Vector2 directionToPlayer = (collision.transform.position - transform.position).normalized;
             float distanceToPlayer = Vector2.Distance(transform.position, collision.transform.position);
@@ -29,7 +29,7 @@ public class EnemyFOV: MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
             canSeePlayer = false;
         }

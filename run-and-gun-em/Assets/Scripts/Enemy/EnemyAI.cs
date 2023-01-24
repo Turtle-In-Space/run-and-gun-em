@@ -11,11 +11,15 @@ public class EnemyAI : MonoBehaviour
     private float turnSpeed = 0.2f;   
 
 
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
+    void Awake()
+    {        
         enemyFOV = GetComponentInChildren<EnemyFOV>();
         weapon = GetComponent<EnemyWeapon>();
+    }
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void FixedUpdate()

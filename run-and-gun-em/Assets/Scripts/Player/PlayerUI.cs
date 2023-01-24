@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
 {
-    //TODO HP bar
     private Text bulletText;
     private GameObject Healthbar;
     private Slider HBslider;
@@ -13,15 +12,16 @@ public class PlayerUI : MonoBehaviour
 
 
     private void Awake()
-    {
-        bulletText = GameObject.Find("AmmoCount").GetComponent<Text>();
-        Healthbar = GameObject.Find("HealthBar").gameObject;
+    {        
         HBslider = Healthbar.GetComponent<Slider>();
         heartAnimator = Healthbar.transform.GetChild(2).GetComponent<Animator>();
     }
 
     private void Start()
     {
+        bulletText = GameObject.Find("AmmoCount").GetComponent<Text>();
+        Healthbar = GameObject.Find("HealthBar").gameObject;
+
         SetMaxHP();
         SetAmmoCount(30);
         heartAnimator.speed = 1.2f;

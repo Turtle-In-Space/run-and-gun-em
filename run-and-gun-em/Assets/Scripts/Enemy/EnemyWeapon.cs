@@ -17,7 +17,7 @@ public class EnemyWeapon : MonoBehaviour
     private int ammoCount = 30;
     
 
-    private void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
     }

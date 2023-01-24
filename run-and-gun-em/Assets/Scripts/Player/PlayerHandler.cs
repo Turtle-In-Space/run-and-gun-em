@@ -12,13 +12,11 @@ public class PlayerHandler : MonoBehaviour
         playerUI = GetComponent<PlayerUI>();
     }
 
-
     private void TakeDamage(int damage)
     {
         playerHP -= damage;
         playerUI.SetHealth(playerHP);
     }
-
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

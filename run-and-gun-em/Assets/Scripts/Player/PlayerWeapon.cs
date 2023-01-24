@@ -38,6 +38,7 @@ public class PlayerWeapon : MonoBehaviour
         {
             animator.SetBool("isFiring", true);
 
+            //Delay mellan skott
             if (Input.GetButton("Fire1") && Time.time - lastShot > bulletDelay)
             {
                 lastShot = Time.time;
@@ -56,9 +57,11 @@ public class PlayerWeapon : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
 
+        //TODO: lägg in bullet spread
         rigidbody.velocity = firePoint.right * bulletSpeed;
     }
 
+    //Kallas från Animator
     public void OnReloadFinished()
     {
         ammoCount = playerUI.SetAmmoCount(30);

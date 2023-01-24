@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PlayerMovment : MonoBehaviour
 {
-    private new Camera camera;
-    private int moveSpeed = 10;
-
+    [SerializeField] private int moveSpeed = 10;
+    private new Camera camera;    
     private new Rigidbody2D rigidbody;
     private Animator animator;  
 
@@ -14,11 +13,15 @@ public class PlayerMovment : MonoBehaviour
     Vector2 mousePos;
 
 
-    void Start()
+    void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        camera = Camera.main;        
+        animator = GetComponent<Animator>();        
+    }
+
+    private void Start()
+    {
+        camera = Camera.main;
     }
 
     void Update()

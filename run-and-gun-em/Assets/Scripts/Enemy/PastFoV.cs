@@ -6,12 +6,9 @@ public class PastFov : MonoBehaviour
 {
     [SerializeField] private float radius = 10f;
     [SerializeField] private float FOV = 60f;
-
     [SerializeField] public bool canSeePlayer = false;
 
-
     public Vector2 playerPos;
-
     private int playerMask = 1<<6;
     private int wallMask = 1<<10;
 

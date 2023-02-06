@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 4032089573426775973}
   - component: {fileID: 4032089573426775972}
   - component: {fileID: 4032089573426775974}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Walls
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1040,7 +1040,7 @@ GameObject:
   - component: {fileID: 3367456621403777755}
   m_Layer: 11
   m_Name: Room1
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1084,7 +1084,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1099,12 +1099,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 3.7004118, y: 2.6627698}
-      - {x: 3.7430346, y: 14.692873}
-      - {x: -3.6991067, y: 14.712593}
-      - {x: -3.7622576, y: -2.5620837}
-      - {x: 15.844205, y: -2.7516043}
-      - {x: 15.781053, y: 2.6780262}
+    - - {x: 3.644377, y: 2.6185038}
+      - {x: 3.5601492, y: 14.602054}
+      - {x: -3.649251, y: 14.704118}
+      - {x: -3.616551, y: -2.6293564}
+      - {x: 15.641325, y: -2.6456845}
+      - {x: 15.589941, y: 2.657298}
 --- !u!1 &4032089574753644050
 GameObject:
   m_ObjectHideFlags: 0

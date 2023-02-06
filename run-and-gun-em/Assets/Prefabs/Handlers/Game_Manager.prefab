@@ -1,0 +1,166 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2491436723212087618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8650004156225208574}
+  m_Layer: 0
+  m_Name: Rooms
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8650004156225208574
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2491436723212087618}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 735133133045460681}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5255692135289681758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 735133133045460681}
+  - component: {fileID: 2335732726385797247}
+  - component: {fileID: 136043912988772580}
+  - component: {fileID: 5255692135289681759}
+  m_Layer: 0
+  m_Name: Game_Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &735133133045460681
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5255692135289681758}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8650004156225208574}
+  - {fileID: 7108654058855947438}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2335732726385797247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5255692135289681758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462a777d02f5b48e786fb47e3ec3796d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door: {fileID: 4040964218671291179, guid: 38044d7b34a50454db298f3f1890d438, type: 3}
+  roomData:
+  - doorData:
+    - pos: {x: 2.5, y: 0}
+      direction: 0
+    roomPrefab: {fileID: 572913593474671593, guid: b549150e6646244c2a2d601d01badd29, type: 3}
+  - doorData:
+    - pos: {x: 16.5, y: 0}
+      direction: 0
+    - pos: {x: 0, y: 15.5}
+      direction: 1
+    roomPrefab: {fileID: 4032089574745125216, guid: 7cceb35d90e8c4779b92c4f2e9beda31, type: 3}
+  - doorData:
+    - pos: {x: 15.5, y: 0}
+      direction: 0
+    - pos: {x: 0, y: 12.5}
+      direction: 1
+    - pos: {x: -15.5, y: 0}
+      direction: 2
+    - pos: {x: 0, y: -12.5}
+      direction: 3
+    roomPrefab: {fileID: 2570831565393626229, guid: c6012db9c125f41079354fd5e0f030c2, type: 3}
+  - doorData:
+    - pos: {x: 21.5, y: 0}
+      direction: 0
+    - pos: {x: -21.5, y: 0}
+      direction: 2
+    roomPrefab: {fileID: 5804761894242571762, guid: fd58cc226249f4d5bb9ba0c7b714aa06, type: 3}
+  lastRoomArea: {fileID: 1749331349931994965, guid: 834c514145f254f24a9a1f747703d4d5, type: 3}
+--- !u!114 &136043912988772580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5255692135289681758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 913c5b3d1dc7e428986b5cbb93ade50a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 706661820256500827, guid: 5fc8195f579574693bb9aeac280c2c4a, type: 3}
+--- !u!114 &5255692135289681759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5255692135289681758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9988913eb4fba4e138938fca6f8a8286, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1461245333297719995, guid: d7cc4c203cdd04a28a33f6227c76d722, type: 3}
+  MainCamera: {fileID: 2990479649226936335, guid: 6f6034eeae6c24eacbe18f26d3bbb148, type: 3}
+  Crosshair: {fileID: 4135950640909306869, guid: 4e22a4f92189744bba7258cb936d83f9, type: 3}
+--- !u!1 &8483688282203718431
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7108654058855947438}
+  m_Layer: 0
+  m_Name: Enemies
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7108654058855947438
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8483688282203718431}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 735133133045460681}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

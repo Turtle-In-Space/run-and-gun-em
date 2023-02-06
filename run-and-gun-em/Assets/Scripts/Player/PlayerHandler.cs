@@ -1,21 +1,26 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System;
 
 public class PlayerHandler : MonoBehaviour
 {
-    private PlayerUI playerUI;
-    private int playerHP = 10;
+    [SerializeField]private HUD playerHUD;    
+    private DeathScreen deathScreen;
 
 
-    private void Awake()
+    private void Start()
     {
-        playerUI = GetComponent<PlayerUI>();
+        deathScreen = GameObject.Find("DeathScreen").GetComponent<DeathScreen>();
     }
 
     private void TakeDamage(int damage)
     {
-        playerHP -= damage;
-        playerUI.SetHealth(playerHP);
+        GameData.PlayerHP -= damage;
+        playerHUD.SetHealth(GameData.PlayerHP);
+
+        if (GameData.PlayerHP <= 0 && !GameData.isPlayerDead)
+        {
+            deathScreen.Dead();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

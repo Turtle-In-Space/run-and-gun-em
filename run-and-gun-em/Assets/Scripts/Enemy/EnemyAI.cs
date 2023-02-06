@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,7 +39,15 @@ public class EnemyAI : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            Destroy(gameObject);
+            Die();
         }
-    }  
+    }
+
+    private void Die()
+    {
+        //blood
+
+        GameData.Score += 100;
+        Destroy(gameObject);
+    }
 }

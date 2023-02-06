@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 public class PlayerWeapon : MonoBehaviour
@@ -9,11 +6,10 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
     [SerializeField] private Animator animator;
-    [SerializeField] private PlayerUI playerUI;
+    [SerializeField]private HUD playerHUD;
 
-    [SerializeField] private int bulletSpread;
-    private int bulletSpeed = 50;
-    private float bulletDelay = 0.2f;
+    private readonly int bulletForce = 45;
+    private readonly float bulletDelay = 0.2f;
     private float lastShot = 0;
     private int ammoCount = 30;
 
@@ -28,7 +24,7 @@ public class PlayerWeapon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && ammoCount != 30)
         {
             animator.SetTrigger("Reload");
-            ammoCount = playerUI.SetAmmoCount(0);            
+            ammoCount = playerHUD.SetAmmoCount(0);            
         }
     }
 
@@ -43,7 +39,7 @@ public class PlayerWeapon : MonoBehaviour
             {
                 lastShot = Time.time;
                 Shoot();
-                ammoCount = playerUI.SetAmmoCount(ammoCount - 1);
+                ammoCount = playerHUD.SetAmmoCount(ammoCount - 1);
             }
         }
         else
@@ -57,13 +53,14 @@ public class PlayerWeapon : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
 
+        rigidbody.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);
+
         //TODO: lägg in bullet spread
-        rigidbody.velocity = firePoint.right * bulletSpeed;
     }
 
     //Kallas från Animator
     public void OnReloadFinished()
     {
-        ammoCount = playerUI.SetAmmoCount(30);
+        ammoCount = playerHUD.SetAmmoCount(30);
     }
 }

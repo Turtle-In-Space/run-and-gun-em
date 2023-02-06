@@ -6983,7 +6983,7 @@ GameObject:
   - component: {fileID: 6638648664819768272}
   m_Layer: 11
   m_Name: Room2
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7027,10 +7027,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.069107056, y: 0.034554005}
+  m_Offset: {x: 0.041330338, y: 0.07037163}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -7041,7 +7041,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 29.887348, y: 23.874908}
+  m_Size: {x: 29.35966, y: 22.919827}
   m_EdgeRadius: 0
 --- !u!1 &2570831566241788607
 GameObject:

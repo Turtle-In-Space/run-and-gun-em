@@ -23,12 +23,14 @@ public class PauseMenu : MonoBehaviour
             pauseMenu.SetActive(false);
             Time.timeScale = 1f;
             GameData.isGamePaused = false;
+            HUD.instace.gameObject.SetActive(true);
         }
         else
         {
             pauseMenu.SetActive(true);
             Time.timeScale = 0f;
             GameData.isGamePaused = true;
+            HUD.instace.gameObject.SetActive(false);
         }
     }
 

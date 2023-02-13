@@ -5,13 +5,13 @@ using UnityEngine;
 public class EnemyFOV: MonoBehaviour
 {
     public bool canSeePlayer;
-    private int wallMask = 1 << 10;
+    private readonly int wallMask = 1 << 10;
 
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
-        {
+        {           
             Vector2 directionToPlayer = (collision.transform.position - transform.position).normalized;
             float distanceToPlayer = Vector2.Distance(transform.position, collision.transform.position);
 

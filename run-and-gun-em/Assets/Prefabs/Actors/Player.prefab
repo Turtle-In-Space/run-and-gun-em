@@ -153,7 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7768c999e3e44a4a946db7285a7dd0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHUD: {fileID: 5448464129586058991}
+  particleBloodShot: {fileID: 2710046615591816519, guid: 1b4d590c04b784d2a8286f2f20b05554, type: 3}
+  particleBloodDead: {fileID: 4659236983830244905, guid: 8e29e992174f645c19c0cdc41b33b236, type: 3}
 --- !u!114 &1461245333297719992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44cf8d3067d984e609fe7dbc04d697f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
 --- !u!114 &6465153055105949266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +182,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8796829914936609648, guid: 95840ffcd4565449ab3b26b6df63770f, type: 3}
   firePoint: {fileID: 1461245332592189780}
   animator: {fileID: 1461245333297719970}
-  playerHUD: {fileID: 5448464129586058991}
 --- !u!70 &1461245333297719973
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -328,14 +327,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8764422974027341627, guid: c93bb45d4f3064bf2a7392131d662c31, type: 3}
   m_PrefabInstance: {fileID: 6495008167121502196}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5448464129586058991 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1278515170773494043, guid: c93bb45d4f3064bf2a7392131d662c31, type: 3}
-  m_PrefabInstance: {fileID: 6495008167121502196}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62bf85afa3c5e49b29943b8723333c34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

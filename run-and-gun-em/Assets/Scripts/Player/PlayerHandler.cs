@@ -3,24 +3,30 @@ using System;
 
 public class PlayerHandler : MonoBehaviour
 {
-    [SerializeField]private HUD playerHUD;    
-    private DeathScreen deathScreen;
-
-
-    private void Start()
-    {
-        deathScreen = GameObject.Find("DeathScreen").GetComponent<DeathScreen>();
-    }
+    [SerializeField] private GameObject particleBloodShot;
+    [SerializeField] private GameObject particleBloodDead;
 
     private void TakeDamage(int damage)
     {
+        GameObject blood = Instantiate(particleBloodShot, transform.position, Quaternion.identity);
+        Destroy(blood, 3f);
+
         GameData.PlayerHP -= damage;
-        playerHUD.SetHealth(GameData.PlayerHP);
+        HUD.instace.SetHealth(GameData.PlayerHP);
 
         if (GameData.PlayerHP <= 0 && !GameData.isPlayerDead)
         {
-            deathScreen.Dead();
+            Dead();
         }
+    }
+
+    private void Dead()
+    {
+        GameObject blood = Instantiate(particleBloodDead, transform.position, Quaternion.identity);
+        Destroy(blood, 3f);
+        GameData.isPlayerDead = true;
+        DeathScreen.instace.Dead();
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -28,6 +34,7 @@ public class PlayerHandler : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             TakeDamage(1);
+            //print("Take no damage");
         }
     }
 }

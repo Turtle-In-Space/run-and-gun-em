@@ -1547,6 +1547,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8184970088442195227, guid: 2d9cdf7e2e529417aa47ac2b97c79fac, type: 3}
+      propertyPath: yes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184970088442195227, guid: 2d9cdf7e2e529417aa47ac2b97c79fac, type: 3}
+      propertyPath: offset.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184970088442195227, guid: 2d9cdf7e2e529417aa47ac2b97c79fac, type: 3}
+      propertyPath: offset.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d9cdf7e2e529417aa47ac2b97c79fac, type: 3}
 --- !u!114 &1908708263 stripped

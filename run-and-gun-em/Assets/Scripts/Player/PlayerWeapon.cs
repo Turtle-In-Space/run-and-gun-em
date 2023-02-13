@@ -6,9 +6,9 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
     [SerializeField] private Animator animator;
-    [SerializeField]private HUD playerHUD;
 
-    private readonly int bulletForce = 45;
+    private readonly float spreadMultiplier = 0.2f;
+    private readonly int bulletForce = 50;
     private readonly float bulletDelay = 0.2f;
     private float lastShot = 0;
     private int ammoCount = 30;
@@ -24,7 +24,7 @@ public class PlayerWeapon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && ammoCount != 30)
         {
             animator.SetTrigger("Reload");
-            ammoCount = playerHUD.SetAmmoCount(0);            
+            ammoCount = HUD.instace.SetAmmoCount(0);            
         }
     }
 
@@ -39,7 +39,7 @@ public class PlayerWeapon : MonoBehaviour
             {
                 lastShot = Time.time;
                 Shoot();
-                ammoCount = playerHUD.SetAmmoCount(ammoCount - 1);
+                ammoCount = HUD.instace.SetAmmoCount(ammoCount - 1);
             }
         }
         else
@@ -49,18 +49,19 @@ public class PlayerWeapon : MonoBehaviour
     }
 
     private void Shoot()
-    {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
+    {        
+        Vector2 bulletDirection = new Vector2(firePoint.right.x + Random.Range(-spreadMultiplier, spreadMultiplier), firePoint.right.y + Random.Range(-spreadMultiplier, spreadMultiplier)).normalized;
+        float angle = Mathf.Atan2(bulletDirection.y, bulletDirection.x) * Mathf.Rad2Deg;
+        Quaternion bulletRotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        rigidbody.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);
-
-        //TODO: lägg in bullet spread
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, bulletRotation);
+        Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();       
+        rigidbody.AddForce(bulletDirection * bulletForce, ForceMode2D.Impulse);
     }
 
     //Kallas från Animator
     public void OnReloadFinished()
     {
-        ammoCount = playerHUD.SetAmmoCount(30);
+        ammoCount = HUD.instace.SetAmmoCount(30);
     }
 }

@@ -5,17 +5,19 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    private EnemyWeapon weapon;
+    [SerializeField] private EnemyWeapon weapon;
+    [SerializeField] private GameObject bloodShot;
+    [SerializeField] private GameObject bloodDeath;
     private EnemyFOV enemyFOV;
     private GameObject player;
 
-    private float turnSpeed = 0.2f;   
+    private readonly float turnSpeed = 0.2f;
+    private int health = 2;
 
 
     void Awake()
     {        
         enemyFOV = GetComponentInChildren<EnemyFOV>();
-        weapon = GetComponent<EnemyWeapon>();
     }
 
     private void Start()
@@ -39,15 +41,29 @@ public class EnemyAI : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
+            Damage(1);
+        }
+    }
+
+    private void Damage(int amount)
+    {
+        health -= amount;
+        if (health <= 0)
             Die();
+        else
+        {
+            GameObject blood = Instantiate(bloodShot, transform.position, Quaternion.identity);
+            Destroy(blood, 3f);
         }
     }
 
     private void Die()
     {
-        //blood
+        GameObject blood = Instantiate(bloodDeath, transform.position, Quaternion.identity);
+        Destroy(blood, 3f);
 
-        GameData.Score += 100;
+        HUD.instace.SetScore(100);
+        Game_Manager.instance.EnemyKilled();
         Destroy(gameObject);
     }
 }

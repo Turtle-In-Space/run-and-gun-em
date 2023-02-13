@@ -9,7 +9,7 @@ public class DoorHandler : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (canExplode && Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.E) && canExplode)
         {
             Destroy(gameObject);
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);

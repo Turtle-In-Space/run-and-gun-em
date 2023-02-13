@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,9 +9,9 @@ public class EnemyWeapon : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     private Animator animator;
 
-    private readonly float bulletSpeed = 25;
-    private readonly float bulletDelay = 0.4f;
-    private readonly float bulletSpreadMultiplier = 2;
+    private readonly float bulletForce = 30;
+    private readonly float bulletDelay = 0.3f;
+    private readonly float spreadMultiplier = 0.2f;
     private float lastShot = 0;
     private int ammoCount = 30;
     
@@ -29,10 +28,12 @@ public class EnemyWeapon : MonoBehaviour
             animator.SetBool("isShooting", true);
             lastShot = Time.time;
             ammoCount -= 1;
+
+            Vector2 bulletDirection = new Vector2(firePoint.right.x + Random.Range(-spreadMultiplier, spreadMultiplier), firePoint.right.y + Random.Range(-spreadMultiplier, spreadMultiplier)).normalized;
+
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
-
-            rigidbody.velocity = firePoint.right * bulletSpeed + UnityEngine.Random.Range(0, bulletSpreadMultiplier) * (UnityEngine.Random.Range(0, 2) * 2 - 1) * firePoint.right;
+            rigidbody.AddForce(bulletDirection * bulletForce, ForceMode2D.Impulse);
         }
         else if (ammoCount == 0)
         {
@@ -41,7 +42,7 @@ public class EnemyWeapon : MonoBehaviour
         }
     }
 
-    public void Reload()
+    private void Reload()
     {
         ammoCount = 30;
     }

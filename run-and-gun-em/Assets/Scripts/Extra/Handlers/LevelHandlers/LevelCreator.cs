@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class LevelCreator : MonoBehaviour
 {     
-    [SerializeField] private GameObject door;
     [SerializeField] private RoomData[] roomData;
+    [SerializeField] private GameObject door;
     [SerializeField] private GameObject lastRoomArea;
 
+    private List<DoorData> possibleExit = new List<DoorData>();
     private Transform roomParent;    
-    private int prevRoomRotation = 0;
     private Vector3 prevRoomPosition = Vector3.zero;
     private readonly int roomLayerMask = 1 << 11;
     private readonly int doorLayerMask = 1 << 13;
-    private List<DoorData> possibleExit = new List<DoorData>();
+    private int prevRoomRotation = 0;
 
 
     private void Awake()
@@ -24,7 +24,7 @@ public class LevelCreator : MonoBehaviour
     //Skapar första rummet och sköter skapandet av fler
     public void GenerateLevel()
     {
-        int numberOfRooms = 1;//Random.Range(3, 5);
+        int numberOfRooms = Random.Range(3, 5);
 
         Instantiate(roomData[0].roomPrefab, roomParent);
         possibleExit.Add(roomData[0].doorData[0]);

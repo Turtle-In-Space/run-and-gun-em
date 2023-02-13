@@ -3,16 +3,20 @@ using UnityEngine;
 
 public class Game_Manager : MonoBehaviour
 {
+    public static Game_Manager instance;
+
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject MainCamera;
-    [SerializeField] private GameObject Crosshair;
 
     private LevelCreator levelCreator;
     private SpawnEntities spawnEntities;
 
+    private int amountOfEnemies;
+
 
     private void Awake()
     {
+        instance = this;
         levelCreator = GetComponent<LevelCreator>();
         spawnEntities = GetComponent<SpawnEntities>();
     }
@@ -21,15 +25,22 @@ public class Game_Manager : MonoBehaviour
     {
         GameData.Level += 1;
         CreateNewLevel();
-    }    
+    }
 
-    public void CreateNewLevel()
+    private void CreateNewLevel()
     {
         levelCreator.GenerateLevel();
         spawnEntities.SpawnHandler();
+        amountOfEnemies = transform.GetChild(1).childCount;
 
         Instantiate(MainCamera);
-        Instantiate(Crosshair);
         Instantiate(player);        
+    }
+
+    public void EnemyKilled()
+    {
+        amountOfEnemies -= 1;
+        if (amountOfEnemies <= 0)
+            LastRoom.instance.LevelFinished();
     }
 }

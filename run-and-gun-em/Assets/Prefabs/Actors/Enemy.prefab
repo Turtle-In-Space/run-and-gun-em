@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 706661820256500831}
   - component: {fileID: 706661820256500830}
   - component: {fileID: 706661820256500824}
-  - component: {fileID: 6125459363672900706}
   - component: {fileID: 5998698179548170445}
+  - component: {fileID: 6125459363672900706}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -138,6 +138,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b73314d6d6394132b4fce49f6783cae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 5998698179548170445}
+  bloodShot: {fileID: 2710046615591816519, guid: 1b4d590c04b784d2a8286f2f20b05554, type: 3}
+  bloodDeath: {fileID: 4659236983830244905, guid: 8e29e992174f645c19c0cdc41b33b236, type: 3}
+--- !u!114 &5998698179548170445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706661820256500827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b530948eb2a4c85b62c26abfbd1420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 1117175133104654446}
+  bulletPrefab: {fileID: 8796829914936609648, guid: c42632008b1ad44dfb99d0d9ae66a24d, type: 3}
 --- !u!95 &6125459363672900706
 Animator:
   serializedVersion: 3
@@ -157,20 +174,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5998698179548170445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 706661820256500827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44b530948eb2a4c85b62c26abfbd1420, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firePoint: {fileID: 1117175133104654446}
-  bulletPrefab: {fileID: 8796829914936609648, guid: c42632008b1ad44dfb99d0d9ae66a24d, type: 3}
 --- !u!1 &2481251786590226373
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5973158290360379857}
   - component: {fileID: 5463895101602843729}
-  - component: {fileID: 8874515286948691410}
+  - component: {fileID: 4168324010262604797}
   m_Layer: 8
   m_Name: FOV
   m_TagString: Untagged
@@ -268,7 +271,7 @@ PolygonCollider2D:
       - {x: 18.489403, y: -7.391079}
       - {x: 24.37702, y: -5.150891}
       - {x: 27.694185, y: 1.0544827}
---- !u!114 &8874515286948691410
+--- !u!114 &4168324010262604797
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

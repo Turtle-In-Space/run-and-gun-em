@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 2335732726385797247}
   - component: {fileID: 136043912988772580}
   - component: {fileID: 5255692135289681759}
+  - component: {fileID: 1721395100334178665}
   m_Layer: 0
   m_Name: Game_Manager
   m_TagString: Untagged
@@ -133,7 +134,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1461245333297719995, guid: d7cc4c203cdd04a28a33f6227c76d722, type: 3}
   MainCamera: {fileID: 2990479649226936335, guid: 6f6034eeae6c24eacbe18f26d3bbb148, type: 3}
-  Crosshair: {fileID: 4135950640909306869, guid: 4e22a4f92189744bba7258cb936d83f9, type: 3}
+--- !u!114 &1721395100334178665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5255692135289681758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b33ad94c28bcd4d96940af483b108a52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorTexture: {fileID: 2800000, guid: 467173489591044ed8c7bf2e290b18e5, type: 3}
 --- !u!1 &8483688282203718431
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,16 +5,22 @@ using TMPro;
 
 public class DeathScreen : MonoBehaviour
 {
+    public static DeathScreen instace;
+
     [SerializeField] private LevelLoaderScript levelLoader;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI levelText;
 
+    private void Awake()
+    {
+        instace = this;
+    }
 
     public void Dead()
     {
         Time.timeScale = 0f;
         GameData.isGamePaused = true;
-        GameData.isPlayerDead = true;
+        HUD.instace.gameObject.SetActive(false);
         transform.GetChild(0).gameObject.SetActive(true);
 
         scoreText.text = "Score: " + GameData.Score;

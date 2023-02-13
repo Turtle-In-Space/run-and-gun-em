@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerMovment : MonoBehaviour
 {
-    [SerializeField] private int moveSpeed = 10;
+    private readonly int moveSpeed = 11;
     private new Camera camera;    
     private new Rigidbody2D rigidbody;
     private Animator animator;  
 
-    Vector2 speed;
-    Vector2 mousePos;
+    private Vector2 speed;
+    private Vector2 mousePos;
 
 
     void Awake()

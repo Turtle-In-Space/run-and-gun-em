@@ -22,4 +22,9 @@ public class Menu_Manager : MonoBehaviour
 
         levelLoader.ChangeLevel((int)Scene.Game);
     }
+
+    public void LoadLeaderboardScene()
+    {
+        levelLoader.ChangeLevel((int)Scene.Leaderboard);
+    }
 }

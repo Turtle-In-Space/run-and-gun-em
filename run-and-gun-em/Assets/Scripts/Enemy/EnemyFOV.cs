@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class EnemyFOV: MonoBehaviour
 {
+    [SerializeField] private EnemyAI AI;
+
     public bool canSeePlayer;
     private readonly int wallMask = 1 << 10;
+    private readonly int doorMask = 1 << 13;
 
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -18,7 +21,8 @@ public class EnemyFOV: MonoBehaviour
             //Kollar om det finns en vägg i vägen
             if (!Physics2D.Raycast(transform.position, directionToPlayer, distanceToPlayer, wallMask))
             {
-                canSeePlayer = true;
+                if(!Physics2D.Raycast(transform.position, directionToPlayer, distanceToPlayer, doorMask))
+                    canSeePlayer = true;
             }
             else
             {
@@ -32,6 +36,7 @@ public class EnemyFOV: MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             canSeePlayer = false;
+            Debug.Log("lost player at " + collision.transform.position);
         }
     }
 }

@@ -9,4 +9,6 @@ public static class GameData
 
     public static bool isGamePaused;
     public static bool isPlayerDead;
+
+    public static string PlayerID;
 }

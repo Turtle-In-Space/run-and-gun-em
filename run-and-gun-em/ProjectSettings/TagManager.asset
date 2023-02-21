@@ -7,6 +7,8 @@ TagManager:
   - Bullet
   - Canvas
   - Wall
+  - Room
+  - Door
   layers:
   - Default
   - TransparentFX

@@ -182,6 +182,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8796829914936609648, guid: 95840ffcd4565449ab3b26b6df63770f, type: 3}
   firePoint: {fileID: 1461245332592189780}
   animator: {fileID: 1461245333297719970}
+  gunSmoke: {fileID: 1697369339095959643, guid: 45e72a49e31f4475392ce60bc1b44668, type: 3}
 --- !u!70 &1461245333297719973
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

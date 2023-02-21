@@ -6,6 +6,7 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject gunSmoke;
 
     private readonly float spreadMultiplier = 0.2f;
     private readonly int bulletForce = 50;
@@ -57,6 +58,10 @@ public class PlayerWeapon : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, bulletRotation);
         Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();       
         rigidbody.AddForce(bulletDirection * bulletForce, ForceMode2D.Impulse);
+
+        Quaternion smokeRotation = Quaternion.Euler(0, 0, transform.eulerAngles.z);
+        GameObject smoke = Instantiate(gunSmoke, firePoint.position, smokeRotation, transform);
+        Destroy(smoke, 1.2f);
     }
 
     //Kallas från Animator

@@ -7,6 +7,7 @@ public class DeathScreen : MonoBehaviour
 {
     public static DeathScreen instace;
 
+    [SerializeField] private SubmitScore submitScore;
     [SerializeField] private LevelLoaderScript levelLoader;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI levelText;
@@ -25,6 +26,8 @@ public class DeathScreen : MonoBehaviour
 
         scoreText.text = "Score: " + GameData.Score;
         levelText.text = "Level: " + GameData.Level;
+
+        submitScore.StartScoreRutine(GameData.Score);
     }
 
     public void ExitGame()

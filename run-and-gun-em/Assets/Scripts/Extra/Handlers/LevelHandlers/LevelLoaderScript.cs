@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 public enum Scene
 {
     Menu,
-    Game
+    Game,
+    Leaderboard,
+    Options
 }
 
 public class LevelLoaderScript : MonoBehaviour

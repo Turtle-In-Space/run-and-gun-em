@@ -5,21 +5,81 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637853742960000000
-    m_Hash: 1498389506
+      ticks: 638125227160000000
+    m_Hash: 2917954102
   m_LockFileStatus:
     m_FilePath: /Users/04elsv01/Unity/run-and-gun-em-main/run-and-gun-em/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637853743240000000
-    m_Hash: 1102651484
+      ticks: 638125227160000000
+    m_Hash: 1487455365
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
   m_Packages:
     m_ResolvedPackages:
+    - packageId: com.lootlocker.lootlockersdk@https://github.com/LootLocker/unity-sdk.git
+      testable: 0
+      isDirectDependency: 1
+      version: 1.1.45
+      source: 5
+      resolvedPath: /Users/04elsv01/Unity/run-and-gun-em-main/run-and-gun-em/Library/PackageCache/com.lootlocker.lootlockersdk@7bf7efd0fe
+      assetPath: Packages/com.lootlocker.lootlockersdk
+      name: com.lootlocker.lootlockersdk
+      displayName: LootLocker
+      author:
+        name: LootLocker
+        email: hello@lootlocker.com
+        url: https://lootlocker.com
+      category: 
+      type: tool
+      description: "LootLocker is a game backend-as-a-service with plug and play
+        tools to upgrade your game and give your players the best experience possible.
+        Designed for teams of all shapes and sizes, on mobile, PC and console. From
+        solo developers, indie teams, AAA studios, and publishers. Built with cross-platform
+        in mind.\n\n\u25AA Manage your game\nSave time and upgrade your game with
+        leaderboards, progression, and more. Completely off-the-shelf features, built
+        to work with any game and platform.\n\n\u25AA Manage your content\nTake charge
+        of your game's content on all platforms, in one place. Sort, edit and manage
+        everything, from cosmetics to currencies, UGC to DLC. Without breaking a
+        sweat.\n\n\u25AA Manage your players\nStore your players' data together in
+        one place. Access their profile and friends list cross-platform. Manage reports,
+        messages, refunds and gifts to keep them hooked.\n"
+      status: 4
+      errors: []
+      versions:
+        all: []
+        compatible: []
+        verified: 
+      dependencies:
+      - name: com.unity.nuget.newtonsoft-json
+        version: 2.0.0
+      resolvedDependencies:
+      - name: com.unity.nuget.newtonsoft-json
+        version: 2.0.0
+      keywords: []
+      registry:
+        id: main
+        name: 
+        url: https://packages.unity.com
+        scopes: []
+        isDefault: 1
+        capabilities: 7
+      hasRegistry: 1
+      hideInEditor: 1
+      entitlements:
+        isAllowed: 1
+      isAssetStorePackage: 0
+      datePublishedTicks: 0
+      documentationUrl: https://docs.lootlocker.com/
+      hasRepository: 0
+      repository:
+        type: 
+        url: 
+        revision: 
+        path: 
     - packageId: com.unity.2d.animation@5.2.0
       testable: 0
       isDirectDependency: 1
@@ -132,6 +192,7 @@ m_PackageAssets:
         - 7.0.6
         - 7.0.7
         - 7.0.8
+        - 7.0.9
         - 8.0.0-pre.3
         - 8.0.0-pre.4
         - 8.0.0
@@ -145,6 +206,7 @@ m_PackageAssets:
         - 9.0.0
         - 9.0.1
         - 10.0.0-pre.1
+        - 10.0.0-pre.2
         compatible:
         - 5.2.0
         - 5.2.1
@@ -361,6 +423,7 @@ m_PackageAssets:
         - 6.0.4
         - 6.0.5
         - 6.0.6
+        - 6.0.7
         - 7.0.0-pre.3
         - 7.0.0-pre.4
         - 7.0.0
@@ -371,7 +434,9 @@ m_PackageAssets:
         - 8.0.0-pre.3
         - 8.0.0
         - 8.0.1
+        - 8.0.2
         - 9.0.0-pre.1
+        - 9.0.0-pre.2
         compatible:
         - 4.3.0
         - 4.3.1
@@ -578,6 +643,7 @@ m_PackageAssets:
         - 9.0.0
         - 9.0.1
         - 10.0.0-pre.1
+        - 10.0.0-pre.2
         compatible:
         - 5.3.0
         verified: 5.3.0
@@ -702,7 +768,7 @@ m_PackageAssets:
         email: 
         url: 
       category: Editor
-      type: 
+      type: asset
       description: The Version Control package gives you the ability to use either
         Collaborate or Plastic SCM for Unity (beta) in the Unity editor. To use Plastic
         SCM for Unity (beta), a Plastic SCM subscription is required. Learn more
@@ -762,6 +828,7 @@ m_PackageAssets:
         - 1.17.1
         - 1.17.2
         - 1.17.6
+        - 1.17.7
         - 2.0.0-preview.6
         - 2.0.0-preview.8
         - 2.0.0-preview.15
@@ -769,6 +836,7 @@ m_PackageAssets:
         - 2.0.0-preview.20
         - 2.0.0-preview.21
         - 2.0.0-preview.22
+        - 2.0.0
         - 2.1.0-preview.3
         - 2.1.0-preview.5
         - 2.1.0-preview.6
@@ -781,6 +849,7 @@ m_PackageAssets:
         - 1.17.1
         - 1.17.2
         - 1.17.6
+        - 1.17.7
         - 2.0.0-preview.6
         - 2.0.0-preview.8
         - 2.0.0-preview.15
@@ -788,6 +857,7 @@ m_PackageAssets:
         - 2.0.0-preview.20
         - 2.0.0-preview.21
         - 2.0.0-preview.22
+        - 2.0.0
         - 2.1.0-preview.3
         - 2.1.0-preview.5
         - 2.1.0-preview.6
@@ -822,7 +892,7 @@ m_PackageAssets:
         isDefault: 1
         capabilities: 7
       hasRegistry: 1
-      hideInEditor: 1
+      hideInEditor: 0
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
@@ -848,7 +918,7 @@ m_PackageAssets:
         email: 
         url: 
       category: 
-      type: 
+      type: asset
       description: The JetBrains Rider Editor package provides an integration for
         using the JetBrains Rider IDE as a code editor for Unity. It adds support
         for generating .csproj files for code completion and auto-discovery of installations.
@@ -888,6 +958,8 @@ m_PackageAssets:
         - 3.0.14
         - 3.0.15
         - 3.0.16
+        - 3.0.17
+        - 3.0.18
         compatible:
         - 1.0.2
         - 1.0.6
@@ -921,6 +993,8 @@ m_PackageAssets:
         - 3.0.14
         - 3.0.15
         - 3.0.16
+        - 3.0.17
+        - 3.0.18
         verified: 2.0.7
       dependencies:
       - name: com.unity.test-framework
@@ -943,7 +1017,7 @@ m_PackageAssets:
         isDefault: 1
         capabilities: 7
       hasRegistry: 1
-      hideInEditor: 1
+      hideInEditor: 0
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
@@ -969,7 +1043,7 @@ m_PackageAssets:
         email: 
         url: 
       category: 
-      type: 
+      type: asset
       description: Code editor integration for supporting Visual Studio as code editor
         for unity. Adds support for generating csproj files for intellisense purposes,
         auto discovery of installations, etc.
@@ -996,6 +1070,7 @@ m_PackageAssets:
         - 2.0.14
         - 2.0.15
         - 2.0.16
+        - 2.0.17
         compatible:
         - 1.0.2
         - 1.0.3
@@ -1016,7 +1091,8 @@ m_PackageAssets:
         - 2.0.14
         - 2.0.15
         - 2.0.16
-        verified: 2.0.16
+        - 2.0.17
+        verified: 2.0.17
       dependencies:
       - name: com.unity.test-framework
         version: 1.1.9
@@ -1038,7 +1114,7 @@ m_PackageAssets:
         isDefault: 1
         capabilities: 7
       hasRegistry: 1
-      hideInEditor: 1
+      hideInEditor: 0
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
@@ -1137,7 +1213,7 @@ m_PackageAssets:
         email: 
         url: 
       category: Unity Test Framework
-      type: 
+      type: asset
       description: Test framework for running Edit mode and Play mode tests in Unity.
       status: 4
       errors: []
@@ -1178,14 +1254,22 @@ m_PackageAssets:
         - 1.1.31
         - 1.1.33
         - 1.3.0
+        - 1.3.1
+        - 1.3.2
+        - 1.3.3
         - 2.0.1-exp.1
+        - 2.0.1-exp.2
         - 2.0.1-pre.12
         - 2.0.1-pre.18
         compatible:
         - 1.1.31
         - 1.1.33
         - 1.3.0
+        - 1.3.1
+        - 1.3.2
+        - 1.3.3
         - 2.0.1-exp.1
+        - 2.0.1-exp.2
         - 2.0.1-pre.12
         - 2.0.1-pre.18
         verified: 1.1.33
@@ -1214,7 +1298,7 @@ m_PackageAssets:
         isDefault: 1
         capabilities: 7
       hasRegistry: 1
-      hideInEditor: 1
+      hideInEditor: 0
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
@@ -1240,7 +1324,7 @@ m_PackageAssets:
         email: 
         url: 
       category: Text Rendering
-      type: 
+      type: asset
       description: 'TextMeshPro is the ultimate text solution for Unity. It''s the
         perfect replacement for Unity''s UI Text and the legacy Text Mesh.
 
@@ -1349,12 +1433,15 @@ m_PackageAssets:
         - 3.2.0-pre.1
         - 3.2.0-pre.2
         - 3.2.0-pre.3
+        - 3.2.0-pre.4
         - 4.0.0-pre.1
+        - 4.0.0-pre.2
         compatible:
         - 3.0.6
         - 3.2.0-pre.1
         - 3.2.0-pre.2
         - 3.2.0-pre.3
+        - 3.2.0-pre.4
         verified: 3.0.6
       dependencies:
       - name: com.unity.ugui
@@ -1380,7 +1467,7 @@ m_PackageAssets:
         isDefault: 1
         capabilities: 7
       hasRegistry: 1
-      hideInEditor: 1
+      hideInEditor: 0
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
@@ -1406,7 +1493,7 @@ m_PackageAssets:
         email: 
         url: 
       category: 
-      type: 
+      type: asset
       description: Use Unity Timeline to create cinematic content, game-play sequences,
         audio sequences, and complex particle effects.
       status: 4
@@ -1486,6 +1573,9 @@ m_PackageAssets:
         - 1.7.0
         - 1.7.1
         - 1.7.2
+        - 1.7.3
+        - 1.8.0
+        - 1.8.1
         compatible:
         - 1.4.8
         - 1.5.0-pre.2
@@ -1515,6 +1605,9 @@ m_PackageAssets:
         - 1.7.0
         - 1.7.1
         - 1.7.2
+        - 1.7.3
+        - 1.8.0
+        - 1.8.1
         verified: 1.4.8
       dependencies:
       - name: com.unity.modules.director
@@ -1548,7 +1641,7 @@ m_PackageAssets:
         isDefault: 1
         capabilities: 7
       hasRegistry: 1
-      hideInEditor: 1
+      hideInEditor: 0
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
@@ -3471,6 +3564,8 @@ m_PackageAssets:
         - 1.4.3
         - 1.5.2
         - 1.6.0
+        - 1.7.0
+        - 1.7.1
         compatible:
         - 1.0.1
         - 1.1.0-pre.7
@@ -3489,6 +3584,8 @@ m_PackageAssets:
         - 1.4.3
         - 1.5.2
         - 1.6.0
+        - 1.7.0
+        - 1.7.1
         verified: 1.0.1
       dependencies:
       - name: com.unity.modules.unitywebrequest
@@ -3653,6 +3750,7 @@ m_PackageAssets:
         - 6.0.3
         - 6.0.4
         - 6.0.5
+        - 6.0.6
         - 7.0.0-pre.3
         - 7.0.0-pre.4
         - 7.0.0
@@ -3664,6 +3762,7 @@ m_PackageAssets:
         - 8.0.0
         - 8.0.1
         - 9.0.0-pre.1
+        - 9.0.0-pre.2
         compatible:
         - 4.2.0
         - 4.2.1
@@ -3777,6 +3876,62 @@ m_PackageAssets:
         type: git
         url: https://github.cds.internal.unity3d.com/unity/2d.git
         revision: 6f9c488e4d487ead34ee4d516f0a2f4a911a8b25
+        path: 
+    - packageId: com.unity.nuget.newtonsoft-json@2.0.0
+      testable: 0
+      isDirectDependency: 0
+      version: 2.0.0
+      source: 1
+      resolvedPath: /Users/04elsv01/Unity/run-and-gun-em-main/run-and-gun-em/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0
+      assetPath: Packages/com.unity.nuget.newtonsoft-json
+      name: com.unity.nuget.newtonsoft-json
+      displayName: Newtonsoft Json
+      author:
+        name: 
+        email: 
+        url: 
+      category: 
+      type: library
+      description: 'Newtonsoft Json for use in Unity projects and Unity packages.
+        Currently synced to version 12.0.2.
+
+
+        This package is used for advanced
+        json serialization and deserialization. Most Unity users will be better suited
+        using the existing json tools built into Unity.
+
+        To avoid assembly
+        clashes, please use this package if you intend to use Newtonsoft Json.'
+      status: 4
+      errors: []
+      versions:
+        all:
+        - 2.0.0
+        compatible:
+        - 2.0.0
+        verified: 2.0.0
+      dependencies: []
+      resolvedDependencies: []
+      keywords: []
+      registry:
+        id: main
+        name: 
+        url: https://packages.unity.com
+        scopes: []
+        isDefault: 1
+        capabilities: 7
+      hasRegistry: 1
+      hideInEditor: 1
+      entitlements:
+        isAllowed: 1
+      isAssetStorePackage: 0
+      datePublishedTicks: 0
+      documentationUrl: 
+      hasRepository: 1
+      repository:
+        type: git
+        url: https://github.cds.internal.unity3d.com/unity/com.unity.nuget.newtonsoft-json.git
+        revision: d2fd6ed876261bbd82f59199ad711e7667bf633a
         path: 
   m_LocalPackages:
     m_LocalFileStatus: []

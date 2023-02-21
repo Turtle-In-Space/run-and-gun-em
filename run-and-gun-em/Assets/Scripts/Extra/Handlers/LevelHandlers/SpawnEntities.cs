@@ -37,9 +37,11 @@ public class SpawnEntities : MonoBehaviour
         float randPosY = Random.Range(roomBounds.min.y, roomBounds.max.y);
         Vector3 randPos = new Vector3(randPosX, randPosY, 0);
 
+        Quaternion randomRotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+
         if(IsValidPosition(randPos))
         {
-            Instantiate(enemy, randPos, Quaternion.identity, enemiesParent);
+            Instantiate(enemy, randPos, randomRotation, enemiesParent);
         }
         else
         {

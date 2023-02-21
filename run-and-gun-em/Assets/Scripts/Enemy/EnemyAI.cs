@@ -8,16 +8,20 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private EnemyWeapon weapon;
     [SerializeField] private GameObject bloodShot;
     [SerializeField] private GameObject bloodDeath;
+
     private EnemyFOV enemyFOV;
     private GameObject player;
+    private new Rigidbody2D rigidbody;
 
+    [SerializeField] private int moveSpeed;
     private readonly float turnSpeed = 0.2f;
     private int health = 2;
 
 
-    void Awake()
+    private void Awake()
     {        
         enemyFOV = GetComponentInChildren<EnemyFOV>();
+        rigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
@@ -25,7 +29,20 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    void FixedUpdate()
+    private void Update()
+    {
+        LookAtPlayer();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Damage(1);
+        }
+    }
+
+    private void LookAtPlayer()
     {
         if (enemyFOV.canSeePlayer)
         {
@@ -34,14 +51,6 @@ public class EnemyAI : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle + 5), turnSpeed);
 
             weapon.Shoot();
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-            Damage(1);
         }
     }
 

@@ -6,9 +6,9 @@ public class EnemyFOV: MonoBehaviour
 {
     [SerializeField] private EnemyAI AI;
 
-    public bool canSeePlayer;
     private readonly int wallMask = 1 << 10;
     private readonly int doorMask = 1 << 13;
+    public bool canSeePlayer;
 
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -26,6 +26,8 @@ public class EnemyFOV: MonoBehaviour
             }
             else
             {
+                if(canSeePlayer)
+                    AI.OnLostPlayer(collision.transform.position);
                 canSeePlayer = false;
             }
         }
@@ -35,8 +37,11 @@ public class EnemyFOV: MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            canSeePlayer = false;
-            Debug.Log("lost player at " + collision.transform.position);
+            if(canSeePlayer)
+            {
+                AI.OnLostPlayer(collision.transform.position);
+                canSeePlayer = false;
+            }            
         }
     }
 }

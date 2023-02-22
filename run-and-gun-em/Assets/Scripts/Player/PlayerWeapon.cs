@@ -8,12 +8,18 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject gunSmoke;
 
-    private readonly float spreadMultiplier = 0.2f;
-    private readonly int bulletForce = 50;
+    private ParticleSystem gunSmokeParticleSys;
+
+    private readonly float bulletSpreadMultiplier = 0.18f;
     private readonly float bulletDelay = 0.2f;
+    private readonly int bulletForce = 50;
     private float lastShot = 0;
     private int ammoCount = 30;
 
+    private void Awake()
+    {
+        gunSmokeParticleSys = gunSmoke.GetComponent<ParticleSystem>();
+    }
 
     private void Start()
     {
@@ -50,8 +56,8 @@ public class PlayerWeapon : MonoBehaviour
     }
 
     private void Shoot()
-    {        
-        Vector2 bulletDirection = new Vector2(firePoint.right.x + Random.Range(-spreadMultiplier, spreadMultiplier), firePoint.right.y + Random.Range(-spreadMultiplier, spreadMultiplier)).normalized;
+    {
+        Vector2 bulletDirection = new Vector2(firePoint.right.x + Random.Range(-bulletSpreadMultiplier, bulletSpreadMultiplier), firePoint.right.y + Random.Range(-bulletSpreadMultiplier, bulletSpreadMultiplier)).normalized;
         float angle = Mathf.Atan2(bulletDirection.y, bulletDirection.x) * Mathf.Rad2Deg;
         Quaternion bulletRotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
@@ -59,9 +65,7 @@ public class PlayerWeapon : MonoBehaviour
         Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();       
         rigidbody.AddForce(bulletDirection * bulletForce, ForceMode2D.Impulse);
 
-        Quaternion smokeRotation = Quaternion.Euler(0, 0, transform.eulerAngles.z);
-        GameObject smoke = Instantiate(gunSmoke, firePoint.position, smokeRotation, transform);
-        Destroy(smoke, 1.2f);
+        gunSmokeParticleSys.Play();
     }
 
     //Kallas från Animator

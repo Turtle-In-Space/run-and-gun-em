@@ -24,6 +24,7 @@ public class PlayerHandler : MonoBehaviour
     {
         GameObject blood = Instantiate(particleBloodDead, transform.position, Quaternion.identity);
         Destroy(blood, 3f);
+
         GameData.isPlayerDead = true;
         DeathScreen.instace.Dead();
         Destroy(gameObject);

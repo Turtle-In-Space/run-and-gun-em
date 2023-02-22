@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerMovment : MonoBehaviour
 {
-    private readonly int moveSpeed = 11;
     private new Camera camera;    
     private new Rigidbody2D rigidbody;
     private Animator animator;  
@@ -12,6 +11,7 @@ public class PlayerMovment : MonoBehaviour
     private Vector2 speed;
     private Vector2 mousePos;
 
+    private readonly int moveSpeed = 11;
 
     void Awake()
     {
@@ -36,7 +36,7 @@ public class PlayerMovment : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigidbody.MovePosition(rigidbody.position + speed * moveSpeed * Time.deltaTime);
+        rigidbody.MovePosition(rigidbody.position + moveSpeed * Time.deltaTime * speed);
 
         Vector2 lookDirection = mousePos - rigidbody.position;
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;

@@ -13,9 +13,12 @@ public class EnemyAI : MonoBehaviour
     private GameObject player;
     private new Rigidbody2D rigidbody;
 
-    [SerializeField] private int moveSpeed;
+    private Vector2 lastKnownPosition;
+
+    private readonly int moveSpeed = 8;
     private readonly float turnSpeed = 0.2f;
     private int health = 2;
+    private bool lookingForPlayer;
 
 
     private void Awake()
@@ -32,6 +35,14 @@ public class EnemyAI : MonoBehaviour
     private void Update()
     {
         LookAtPlayer();
+    }
+
+    private void FixedUpdate()
+    {
+        if (lookingForPlayer)
+        {
+            MoveTo(lastKnownPosition);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -74,5 +85,26 @@ public class EnemyAI : MonoBehaviour
         HUD.instace.SetScore(100);
         Game_Manager.instance.EnemyKilled();
         Destroy(gameObject);
+    }
+
+    private void MoveTo(Vector2 position)
+    {
+        Vector2 direction = position - (Vector2)transform.position;
+        rigidbody.MovePosition((Vector2)transform.position + (moveSpeed * Time.deltaTime * direction.normalized));
+
+        Vector2 lookDirection = position - (Vector2)transform.position;
+        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle + 5), turnSpeed);
+
+        if (Vector2.Distance(transform.position, position) < 0.1)
+        {
+            lookingForPlayer = false;
+        }
+    }
+
+    public void OnLostPlayer(Vector2 lastPosition)
+    {
+        lastKnownPosition = lastPosition;
+        lookingForPlayer = true;
     }
 }

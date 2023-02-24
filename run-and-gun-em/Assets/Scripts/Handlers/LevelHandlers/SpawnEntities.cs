@@ -22,7 +22,7 @@ public class SpawnEntities : MonoBehaviour
         {
             Bounds roomBounds = roomParent.GetChild(i).GetComponent<Collider2D>().bounds;
             float largestSide = roomBounds.size.x > roomBounds.size.y ? roomBounds.size.x : roomBounds.size.y;
-            int amountOfEnemies = (int)Random.Range(1, Mathf.Round(largestSide / 10) + 2);
+            int amountOfEnemies = (int)Random.Range(1, Mathf.Round(largestSide / 10));
 
             for (int j = 0; j < amountOfEnemies; j++)
             {

@@ -8,6 +8,7 @@ public class PlayerHandler : MonoBehaviour
 
     private void TakeDamage(int damage)
     {
+        
         GameObject blood = Instantiate(particleBloodShot, transform.position, Quaternion.identity);
         Destroy(blood, 3f);
 
@@ -17,11 +18,14 @@ public class PlayerHandler : MonoBehaviour
         if (GameData.PlayerHP <= 0 && !GameData.isPlayerDead)
         {
             Dead();
+            return;
         }
+        AudioManager.instance.Play("PlayerHurt");
     }
 
     private void Dead()
     {
+        AudioManager.instance.Play("PlayerDeath");
         GameObject blood = Instantiate(particleBloodDead, transform.position, Quaternion.identity);
         Destroy(blood, 3f);
 

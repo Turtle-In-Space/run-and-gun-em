@@ -19,10 +19,6 @@ public class PlayerWeapon : MonoBehaviour
     private void Awake()
     {
         gunSmokeParticleSys = gunSmoke.GetComponent<ParticleSystem>();
-    }
-
-    private void Start()
-    {
         animator.GetBehaviour<CallReload>().playerWeapon = this;
     }
 
@@ -31,7 +27,8 @@ public class PlayerWeapon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && ammoCount != 30)
         {
             animator.SetTrigger("Reload");
-            ammoCount = HUD.instace.SetAmmoCount(0);            
+            ammoCount = HUD.instace.SetAmmoCount(0);
+            AudioManager.instance.Play("ARReload");
         }
     }
 
@@ -66,6 +63,7 @@ public class PlayerWeapon : MonoBehaviour
         rigidbody.AddForce(bulletDirection * bulletForce, ForceMode2D.Impulse);
 
         gunSmokeParticleSys.Play();
+        AudioManager.instance.Play("ARShot");
     }
 
     //Kallas från Animator

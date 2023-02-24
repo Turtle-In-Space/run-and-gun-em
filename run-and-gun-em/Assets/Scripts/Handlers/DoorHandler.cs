@@ -11,8 +11,9 @@ public class DoorHandler : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.E) && canExplode)
         {
-            Destroy(gameObject);
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            AudioManager.instance.Play("DoorExplosion");
+            Destroy(gameObject);
         }
     }
 }

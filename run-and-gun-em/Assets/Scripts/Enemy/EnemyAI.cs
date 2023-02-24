@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -10,13 +8,15 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private GameObject bloodDeath;
 
     private EnemyFOV enemyFOV;
-    private GameObject player;
+    private Transform playerTransform;
     private new Rigidbody2D rigidbody;
+    private Animator animator;
 
     private Vector2 lastKnownPosition;
+    private IEnumerator coroutine;
 
     private readonly int moveSpeed = 8;
-    private readonly float turnSpeed = 0.2f;
+    private readonly float turnSpeed = 30;
     private int health = 2;
     private bool lookingForPlayer;
 
@@ -25,16 +25,21 @@ public class EnemyAI : MonoBehaviour
     {        
         enemyFOV = GetComponentInChildren<EnemyFOV>();
         rigidbody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void Update()
     {
-        LookAtPlayer();
+        if(enemyFOV.canSeePlayer)
+        {
+            LookAt(playerTransform.position);
+            weapon.Shoot();
+        }
     }
 
     private void FixedUpdate()
@@ -53,16 +58,25 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private void LookAtPlayer()
+    private void LookAt(Vector2 target)
     {
-        if (enemyFOV.canSeePlayer)
-        {
-            Vector2 lookDirection = player.transform.position - transform.position;
-            float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle + 5), turnSpeed);
+        Vector2 lookDirection = target - (Vector2)transform.position;
+        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle), turnSpeed * Time.deltaTime);
+    }
 
-            weapon.Shoot();
-        }
+    private IEnumerator LookAtRoutine(Vector2 target)
+    {
+        Vector2 lookDirection = target - (Vector2)transform.position;
+        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+
+        while (Mathf.Round(transform.eulerAngles.z) != Mathf.Round(angle))
+        {
+            lookDirection = target - (Vector2)transform.position;
+            angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle), turnSpeed * Time.deltaTime);
+            yield return null;
+        }        
     }
 
     private void Damage(int amount)
@@ -72,13 +86,21 @@ public class EnemyAI : MonoBehaviour
             Die();
         else
         {
+            AudioManager.instance.Play("EnemyHurt");
             GameObject blood = Instantiate(bloodShot, transform.position, Quaternion.identity);
             Destroy(blood, 3f);
+
+            if(!enemyFOV.canSeePlayer)
+            {
+                coroutine = LookAtRoutine(playerTransform.position);
+                StartCoroutine(coroutine);
+            }            
         }
     }
 
     private void Die()
     {
+        AudioManager.instance.Play("EnemyDeath");
         GameObject blood = Instantiate(bloodDeath, transform.position, Quaternion.identity);
         Destroy(blood, 3f);
 
@@ -89,21 +111,23 @@ public class EnemyAI : MonoBehaviour
 
     private void MoveTo(Vector2 position)
     {
+        LookAt(position);
+
+        animator.SetBool("isMoving", true);
         Vector2 direction = position - (Vector2)transform.position;
         rigidbody.MovePosition((Vector2)transform.position + (moveSpeed * Time.deltaTime * direction.normalized));
 
-        Vector2 lookDirection = position - (Vector2)transform.position;
-        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle + 5), turnSpeed);
 
         if (Vector2.Distance(transform.position, position) < 0.1)
         {
             lookingForPlayer = false;
+            animator.SetBool("isMoving", false);
         }
     }
 
     public void OnLostPlayer(Vector2 lastPosition)
     {
+        animator.SetBool("isShooting", false);
         lastKnownPosition = lastPosition;
         lookingForPlayer = true;
     }

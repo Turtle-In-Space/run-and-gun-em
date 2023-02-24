@@ -9,16 +9,17 @@ public class EnemyWeapon : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     private Animator animator;
 
-    private readonly float bulletForce = 30;
+    private readonly float bulletForce = 40;
     private readonly float bulletDelay = 0.3f;
     private readonly float spreadMultiplier = 0.2f;
     private float lastShot = 0;
-    private int ammoCount = 30;
+    private int ammoCount = 15;
     
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        animator.GetBehaviour<EnemyCallReload>().enemyWeapon = this;
     }
 
     public void Shoot()
@@ -34,16 +35,19 @@ public class EnemyWeapon : MonoBehaviour
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
             rigidbody.AddForce(bulletDirection * bulletForce, ForceMode2D.Impulse);
+
+            AudioManager.instance.Play("PistolShot");
         }
         else if (ammoCount == 0)
         {
             animator.SetBool("isShooting", false);
-            Reload();
+            animator.SetTrigger("Reload");
+            AudioManager.instance.Play("PistolReload");
         }
     }
 
-    private void Reload()
+    public void OnReloadFinished()
     {
-        ammoCount = 30;
+        ammoCount = 15;
     }
 }

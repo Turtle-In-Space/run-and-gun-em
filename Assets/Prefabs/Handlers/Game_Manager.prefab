@@ -78,7 +78,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462a777d02f5b48e786fb47e3ec3796d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  door: {fileID: 4040964218671291179, guid: 38044d7b34a50454db298f3f1890d438, type: 3}
   roomData:
   - doorData:
     - pos: {x: 2.5, y: 0}
@@ -106,6 +105,7 @@ MonoBehaviour:
     - pos: {x: -21.5, y: 0}
       direction: 2
     roomPrefab: {fileID: 5804761894242571762, guid: fd58cc226249f4d5bb9ba0c7b714aa06, type: 3}
+  doorPrefab: {fileID: 4040964218671291179, guid: 38044d7b34a50454db298f3f1890d438, type: 3}
   lastRoomArea: {fileID: 1749331349931994965, guid: 834c514145f254f24a9a1f747703d4d5, type: 3}
 --- !u!114 &136043912988772580
 MonoBehaviour:
@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: 467173489591044ed8c7bf2e290b18e5, type: 3}
+  offset: {x: 0, y: 0}
 --- !u!1 &8483688282203718431
 GameObject:
   m_ObjectHideFlags: 0

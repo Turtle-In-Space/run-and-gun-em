@@ -156,6 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleBloodShot: {fileID: 2710046615591816519, guid: 1b4d590c04b784d2a8286f2f20b05554, type: 3}
   particleBloodDead: {fileID: 4659236983830244905, guid: 8e29e992174f645c19c0cdc41b33b236, type: 3}
+  particleHealthEffect: {fileID: 349001989011748938, guid: 8747970e5809f408584aaf015172a99b, type: 3}
 --- !u!114 &1461245333297719992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +183,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8796829914936609648, guid: 95840ffcd4565449ab3b26b6df63770f, type: 3}
   firePoint: {fileID: 1461245332592189780}
-  animator: {fileID: 1461245333297719970}
   gunSmoke: {fileID: 1908858089703476789}
 --- !u!70 &1461245333297719973
 CapsuleCollider2D:
@@ -228,6 +228,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1697369339095959641, guid: 45e72a49e31f4475392ce60bc1b44668, type: 3}
       propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1697369339095959641, guid: 45e72a49e31f4475392ce60bc1b44668, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1697369339095959641, guid: 45e72a49e31f4475392ce60bc1b44668, type: 3}

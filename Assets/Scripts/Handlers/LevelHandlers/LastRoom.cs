@@ -20,11 +20,27 @@ public class LastRoom : MonoBehaviour
         levelLoaderScript = GameObject.Find("LevelLoader").GetComponent<LevelLoaderScript>();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            transform.parent.GetChild(1).gameObject.SetActive(true);
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && Input.GetKey(KeyCode.F) && isLevelFinished)
         {
             levelLoaderScript.ChangeLevel((int)Scene.Game);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            transform.parent.GetChild(1).gameObject.SetActive(false);
         }
     }
 

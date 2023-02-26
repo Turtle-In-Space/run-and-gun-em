@@ -16,7 +16,7 @@ public class Menu_Manager : MonoBehaviour
     public void LoadGameLevel()
     {
         GameData.isPlayerDead = false;
-        GameData.PlayerHP = 6;
+        GameData.PlayerHP = GameData.MaxPlayerHP;
         GameData.Level = 0;
         GameData.Score = 0;
 

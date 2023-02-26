@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using LootLocker.Requests;
 using TMPro;
@@ -12,6 +11,7 @@ public class LeaderboardController : MonoBehaviour
     [SerializeField] private LevelLoaderScript levelLoader;
 
     private readonly string leaderboardKey = "globalScore";
+
 
     private void Start()
     {

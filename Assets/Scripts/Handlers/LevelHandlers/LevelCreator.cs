@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelCreator : MonoBehaviour
 {     
     [SerializeField] private RoomData[] roomData;
-    [SerializeField] private GameObject door;
+    [SerializeField] private GameObject doorPrefab;
     [SerializeField] private GameObject lastRoomArea;
 
     private List<DoorData> possibleExit = new List<DoorData>();
@@ -76,13 +76,14 @@ public class LevelCreator : MonoBehaviour
         {
             Transform parent = room.transform.GetChild(0).GetChild(i);
             Quaternion rotation = Quaternion.Euler(0, 0, 90 * (newRotation + (1 + (int)roomData[roomID].doorData[i].direction) % 2));
-            GameObject Door = Instantiate(door, parent.position, rotation, parent);
+            GameObject Door = Instantiate(doorPrefab, parent.position, Quaternion.identity, parent);
+            Door.transform.GetChild(0).rotation = rotation;
 
             // Ingång --> kan exlpodera och ta bort om en annan dörr är ivägen
             if (i == connectDoorID)
             {
-                Door.GetComponent<DoorHandler>().canExplode = true;
-                List<Collider2D> doorCollider = IsColliderObstructed(Door.GetComponent<BoxCollider2D>(), doorLayerMask);
+                Door.GetComponentInChildren<DoorHandler>().canExplode = true;
+                List<Collider2D> doorCollider = IsColliderObstructed(Door.GetComponentInChildren<BoxCollider2D>(), doorLayerMask);
                 if (doorCollider.Count != 0)
                 {
                     Destroy(doorCollider[0].gameObject);
@@ -94,7 +95,7 @@ public class LevelCreator : MonoBehaviour
             }
         }
 
-        if(roomID == 0)
+        if (roomID == 0)
         {
             Instantiate(lastRoomArea, roomPos, Quaternion.identity);
         }

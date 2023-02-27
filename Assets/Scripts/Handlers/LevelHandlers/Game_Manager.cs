@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Game_Manager : MonoBehaviour
@@ -27,6 +26,13 @@ public class Game_Manager : MonoBehaviour
         CreateNewLevel();
     }
 
+    public void EnemyKilled()
+    {
+        amountOfEnemies -= 1;
+        if (amountOfEnemies <= 0)
+            LastRoom.instance.LevelFinished();
+    }
+
     private void CreateNewLevel()
     {
         levelCreator.GenerateLevel();
@@ -35,12 +41,5 @@ public class Game_Manager : MonoBehaviour
 
         Instantiate(MainCamera);
         Instantiate(player);        
-    }
-
-    public void EnemyKilled()
-    {
-        amountOfEnemies -= 1;
-        if (amountOfEnemies <= 0)
-            LastRoom.instance.LevelFinished();
-    }
+    }   
 }

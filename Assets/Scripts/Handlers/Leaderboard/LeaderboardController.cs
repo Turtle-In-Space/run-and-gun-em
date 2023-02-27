@@ -67,5 +67,5 @@ public class LeaderboardController : MonoBehaviour
             }
         });
         yield return new WaitWhile(() => done == false);
-    }
+    }    
 }

@@ -3,23 +3,31 @@ using UnityEngine;
 
 public class DoorHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject explosionPrefab;
     public bool canExplode = false;
+
+    [SerializeField] private GameObject explosionPrefab;
+
+    private GameObject EKey;
 
     private readonly int enemyLayerMask = 1 << 8;
 
+
+    private void Awake()
+    {
+        EKey = transform.parent.GetChild(1).gameObject;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && canExplode)
         {
-            transform.parent.GetChild(1).gameObject.SetActive(true);
+            EKey.SetActive(true);
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetKey(KeyCode.E) && canExplode)
+        if (Input.GetKey(KeyCode.E) && canExplode && collision.CompareTag("Player"))
         {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             AudioManager.instance.Play("DoorExplosion");
@@ -33,7 +41,7 @@ public class DoorHandler : MonoBehaviour
     {
         if (collision.CompareTag("Player") && canExplode)
         {
-            
+            EKey.SetActive(false);
         }
     }
 

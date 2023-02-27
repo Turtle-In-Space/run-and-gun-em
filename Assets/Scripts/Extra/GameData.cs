@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public static class GameData
+﻿public static class GameData
 {
     public static int PlayerHP;
     public static int MaxPlayerHP = 6;

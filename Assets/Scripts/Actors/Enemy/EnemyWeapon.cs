@@ -1,13 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class EnemyWeapon : MonoBehaviour
 {
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject bulletPrefab;
+
     private Animator animator;
+    private ParticleSystem particleGunSmoke;
 
     private readonly float bulletForce = 40;
     private readonly float bulletDelay = 0.3f;
@@ -18,6 +17,7 @@ public class EnemyWeapon : MonoBehaviour
 
     private void Awake()
     {
+        particleGunSmoke = transform.GetChild(0).GetChild(0).GetComponent<ParticleSystem>();
         animator = GetComponent<Animator>();
         animator.GetBehaviour<EnemyCallReload>().enemyWeapon = this;
     }
@@ -26,6 +26,7 @@ public class EnemyWeapon : MonoBehaviour
     {
         if (Time.time - lastShot > bulletDelay && ammoCount > 0)
         {
+            particleGunSmoke.Play();
             animator.SetBool("isShooting", true);
             lastShot = Time.time;
             ammoCount -= 1;

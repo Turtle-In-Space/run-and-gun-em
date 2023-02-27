@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: particleHealthEffect
       value: 
       objectReference: {fileID: 349001989011748938, guid: 8747970e5809f408584aaf015172a99b, type: 3}
+    - target: {fileID: 1461245333297719974, guid: d7cc4c203cdd04a28a33f6227c76d722, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1461245333297719975, guid: d7cc4c203cdd04a28a33f6227c76d722, type: 3}
       propertyPath: m_RootOrder
       value: 1

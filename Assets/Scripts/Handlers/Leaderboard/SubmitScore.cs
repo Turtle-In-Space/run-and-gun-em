@@ -7,6 +7,7 @@ public class SubmitScore : MonoBehaviour
     private IEnumerator corutine;
     private readonly string leaderboardKey = "globalScore";
 
+
     public void StartScoreRutine(int score)
     {
         corutine = SubmitScoreRutine(score);
@@ -31,5 +32,5 @@ public class SubmitScore : MonoBehaviour
             }
         });
         yield return new WaitWhile(() => done == false);
-    }
+    }    
 }

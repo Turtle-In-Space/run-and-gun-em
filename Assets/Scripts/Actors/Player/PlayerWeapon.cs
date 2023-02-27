@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab;
@@ -15,6 +14,7 @@ public class PlayerWeapon : MonoBehaviour
     private readonly int bulletForce = 50;
     private float lastShot = 0;
     private int ammoCount = 30;
+
 
     private void Awake()
     {

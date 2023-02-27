@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LastRoom : MonoBehaviour
@@ -18,6 +16,12 @@ public class LastRoom : MonoBehaviour
     private void Start()
     {
         levelLoaderScript = GameObject.Find("LevelLoader").GetComponent<LevelLoaderScript>();
+    }
+
+    public void LevelFinished()
+    {
+        isLevelFinished = true;
+        GetComponentInChildren<SpriteRenderer>().color = new Color32(66, 101, 63, 110);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -42,11 +46,5 @@ public class LastRoom : MonoBehaviour
         {
             transform.parent.GetChild(1).gameObject.SetActive(false);
         }
-    }
-
-    public void LevelFinished()
-    {
-        isLevelFinished = true;      
-        GetComponentInChildren<SpriteRenderer>().color = new Color32(66, 101, 63, 110);
-    }
+    }    
 }

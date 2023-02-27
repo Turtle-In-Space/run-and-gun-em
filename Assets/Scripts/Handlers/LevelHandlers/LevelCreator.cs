@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class LevelCreator : MonoBehaviour
 {     
     [SerializeField] private RoomData[] roomData;
@@ -11,6 +10,7 @@ public class LevelCreator : MonoBehaviour
     private List<DoorData> possibleExit = new List<DoorData>();
     private Transform roomParent;    
     private Vector3 prevRoomPosition = Vector3.zero;
+
     private readonly int roomLayerMask = 1 << 11;
     private readonly int doorLayerMask = 1 << 13;
     private int prevRoomRotation = 0;
@@ -70,6 +70,7 @@ public class LevelCreator : MonoBehaviour
             return;
         }        
 
+        //TODO gör dett atill egen function
         //Sätter ut speldörrarna och lägger in möjliga utgångar
         possibleExit.Clear();
         for (int i = 0; i < roomData[roomID].doorData.Length; i++)

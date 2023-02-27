@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class EnemyFOV: MonoBehaviour
 {
+    public bool canSeePlayer;
+
     [SerializeField] private EnemyAI AI;
 
     private readonly int wallMask = 1 << 10;
     private readonly int doorMask = 1 << 13;
-    public bool canSeePlayer;
 
 
     private void OnTriggerStay2D(Collider2D collision)

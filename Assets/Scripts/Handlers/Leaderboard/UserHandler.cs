@@ -13,6 +13,21 @@ public class UserHandler : MonoBehaviour
         StartCoroutine("LoginRoutine");     
     }
 
+    public void SetPlayerName()
+    {
+        LootLockerSDKManager.SetPlayerName(inputField.text, (response) =>
+        {
+            if (response.success)
+            {
+                Debug.Log("Player name set success");
+            }
+            else
+            {
+                Debug.Log("Player name set failed" + response.Error);
+            }
+        });
+    }
+
     private IEnumerator LoginRoutine()
     {
         bool done = false;
@@ -31,20 +46,5 @@ public class UserHandler : MonoBehaviour
             }
         });
         yield return new WaitWhile(() => done == false);
-    }
-
-    public void SetPlayerName()
-    {
-        LootLockerSDKManager.SetPlayerName(inputField.text, (response) =>
-        {
-            if (response.success)
-            {
-                Debug.Log("Player name set success");
-            }
-            else
-            {
-                Debug.Log("Player name set failed" + response.Error);
-            }
-        });
-    }
+    }    
 }

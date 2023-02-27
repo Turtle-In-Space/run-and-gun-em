@@ -1,4 +1,3 @@
-using UnityEngine.Audio;
 using System;
 using UnityEngine;
 
@@ -8,7 +7,8 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] sounds;
 
-    void Awake()
+
+    private void Awake()
     {
         if (instance == null)
             instance = this;

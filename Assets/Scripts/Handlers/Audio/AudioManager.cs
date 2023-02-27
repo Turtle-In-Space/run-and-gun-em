@@ -29,11 +29,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        Play("MainTheme");
-    }
-
     public void Play(string name)
     {
         Sound sound = Array.Find(sounds, sound => sound.name == name);
@@ -45,4 +40,9 @@ public class AudioManager : MonoBehaviour
             return;
         }
     }
+
+    private void Start()
+    {
+        Play("MainTheme");
+    }   
 }

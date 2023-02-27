@@ -51,6 +51,29 @@ public class EnemyAI : MonoBehaviour
         {
             MoveTo(lastKnownPosition);
         }
+    }   
+
+    public void OnLostPlayer(Vector2 lastPosition)
+    {
+        animator.SetBool("isShooting", false);
+        lastKnownPosition = lastPosition;
+        lookingForPlayer = true;
+    }
+
+    public IEnumerator LookAtRoutine(Vector2 target)
+    {
+        Vector2 lookDirection = target - (Vector2)transform.position;
+        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+        float _turnspeed = turnSpeed * 0.25f;
+
+        while (Mathf.Round(transform.eulerAngles.z) != Mathf.Round(angle) && !enemyFOV.canSeePlayer)
+        {
+            lookDirection = target - (Vector2)transform.position;
+            angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle), _turnspeed * Time.deltaTime);
+            yield return null;
+
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -116,28 +139,5 @@ public class EnemyAI : MonoBehaviour
             lookingForPlayer = false;
             animator.SetBool("isMoving", false);
         }
-    }
-
-    public void OnLostPlayer(Vector2 lastPosition)
-    {
-        animator.SetBool("isShooting", false);
-        lastKnownPosition = lastPosition;
-        lookingForPlayer = true;
-    }
-
-    public IEnumerator LookAtRoutine(Vector2 target)
-    {
-        Vector2 lookDirection = target - (Vector2)transform.position;
-        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-        float _turnspeed = turnSpeed * 0.25f;
-
-        while (Mathf.Round(transform.eulerAngles.z) != Mathf.Round(angle) && !enemyFOV.canSeePlayer)
-        {
-            lookDirection = target - (Vector2)transform.position;
-            angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle), _turnspeed * Time.deltaTime);
-            yield return null;
-                
-        }
-    }
+    }    
 }

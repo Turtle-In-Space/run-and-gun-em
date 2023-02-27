@@ -39,20 +39,20 @@ public class LeaderboardController : MonoBehaviour
                 string tempPlayerScore = "";
 
                 //Sätter Rank. Name Score "X. NAMEMCNAMEFACE   XXXX"
-                for (int i = 0; i < members.Length; i++)
+                foreach (LootLockerLeaderboardMember member in members)
                 {
-                    tempPlayerName += members[i].rank + ". ";
+                    tempPlayerName += member.rank + ". ";
 
-                    if(members[i].player.name != "")
+                    if (member.player.name != "")
                     {
-                        tempPlayerName += members[i].player.name;
+                        tempPlayerName += member.player.name;
                     }
                     else
                     {
-                        tempPlayerName += members[i].player.public_uid;
+                        tempPlayerName += member.player.public_uid;
                     }
 
-                    tempPlayerScore += members[i].score + "\n";
+                    tempPlayerScore += member.score + "\n";
                     tempPlayerName += "\n";
                 }
                 names.text = tempPlayerName;

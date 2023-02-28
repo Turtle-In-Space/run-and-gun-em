@@ -51,8 +51,11 @@ public class EnemyAI : MonoBehaviour
         {
             MoveTo(lastKnownPosition);
         }
-    }   
+    }  
 
+    /*
+     * När enemy tappar spelaren startar den funktionerna för att leta spelaren
+     */
     public void OnLostPlayer(Vector2 lastPosition)
     {
         animator.SetBool("isShooting", false);
@@ -60,6 +63,10 @@ public class EnemyAI : MonoBehaviour
         lookingForPlayer = true;
     }
 
+    /*
+     * Vänder Enemy mot target om Enemy inte ser spelaren
+     * Kan kallas 1 gång och körs över flera frames
+     */
     public IEnumerator LookAtRoutine(Vector2 target)
     {
         Vector2 lookDirection = target - (Vector2)transform.position;
@@ -76,14 +83,10 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-            Damage(1);
-        }
-    }
-
+    /*
+     * Vänder sig mot target
+     * Måste kallas flera gånger
+     */
     private void LookAt(Vector2 target)
     {
         Vector2 lookDirection = target - (Vector2)transform.position;
@@ -91,6 +94,11 @@ public class EnemyAI : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle), turnSpeed * Time.deltaTime);
     }    
 
+    /*
+     * Sänker fiendens hp med amount
+     * Spelar ljud och bild effekt 
+     * Försöker vända Enemy
+     */
     private void Damage(int amount)
     {
         health -= amount;
@@ -107,13 +115,19 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    /*
+     * Spelar ljud och bild effekter
+     * Uppdaterar score
+     * Chans att droppa healthkit
+     * Tar bort enemy
+     */
     private void Die()
     {
         AudioManager.instance.Play("EnemyDeath");
         GameObject blood = Instantiate(bloodDeath, transform.position, Quaternion.identity);
         Destroy(blood, 3f);
 
-        HUD.instace.SetScore(100);
+        HUD.instace.AddScore(100);
         Game_Manager.instance.EnemyKilled();
 
         int value = Random.Range(0, 100);
@@ -125,6 +139,10 @@ public class EnemyAI : MonoBehaviour
         Destroy(gameObject);
     }
 
+    /*
+     * Flyttar enemy till position
+     * Stannar när nästan där
+     */
     private void MoveTo(Vector2 position)
     {
         LookAt(position);
@@ -139,5 +157,13 @@ public class EnemyAI : MonoBehaviour
             lookingForPlayer = false;
             animator.SetBool("isMoving", false);
         }
-    }    
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Damage(1);
+        }
+    }
 }

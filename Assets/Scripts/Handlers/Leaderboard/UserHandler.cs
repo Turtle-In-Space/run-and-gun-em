@@ -13,6 +13,9 @@ public class UserHandler : MonoBehaviour
         StartCoroutine("LoginRoutine");     
     }
 
+    /*
+     * Sätter spelare namn i online leaderboard
+     */
     public void SetPlayerName()
     {
         LootLockerSDKManager.SetPlayerName(inputField.text, (response) =>
@@ -28,6 +31,9 @@ public class UserHandler : MonoBehaviour
         });
     }
 
+    /*
+     * Loggar in spelaren till leaderboard
+     */
     private IEnumerator LoginRoutine()
     {
         bool done = false;

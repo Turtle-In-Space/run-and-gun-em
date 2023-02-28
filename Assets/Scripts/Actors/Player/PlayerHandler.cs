@@ -7,6 +7,11 @@ public class PlayerHandler : MonoBehaviour
     [SerializeField] private GameObject particleHealthEffect;
 
 
+    private void Start()
+    {
+        HUD.instace.SetHealth(GameData.PlayerHP);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
@@ -15,6 +20,26 @@ public class PlayerHandler : MonoBehaviour
         }
     }
 
+    /* Lägg till amount HP
+     * Spela bild effekt
+     */
+    public void Heal(int amount)
+    {
+        GameObject effect = Instantiate(particleHealthEffect);
+        effect.GetComponent<FollowTarget>().target = transform;
+        effect.GetComponent<ParticleSystem>().Play();
+
+        GameData.PlayerHP += amount;
+        if (GameData.PlayerHP > GameData.MaxPlayerHP)
+            GameData.PlayerHP = GameData.MaxPlayerHP;
+
+        HUD.instace.SetHealth(GameData.PlayerHP);
+    }
+
+    /*
+     * Ta bort damage från HP
+     * Spela ljud och bild effekt
+     */
     private void TakeDamage(int damage)
     {        
         GameObject blood = Instantiate(particleBloodShot, transform.position, Quaternion.identity);
@@ -31,6 +56,10 @@ public class PlayerHandler : MonoBehaviour
         AudioManager.instance.Play("PlayerHurt");
     }
 
+    /*
+     * Spela ljud och bild effekt
+     * Öppna DeathScreen
+     */
     private void Dead()
     {
         AudioManager.instance.Play("PlayerDeath");
@@ -40,18 +69,5 @@ public class PlayerHandler : MonoBehaviour
         GameData.isPlayerDead = true;
         DeathScreen.instace.Dead();
         Destroy(gameObject);
-    }
-
-    public void Heal(int amount)
-    {
-        GameObject effect = Instantiate(particleHealthEffect);
-        effect.GetComponent<FollowTarget>().target = transform;
-        effect.GetComponent<ParticleSystem>().Play();
-
-        GameData.PlayerHP += amount;
-        if (GameData.PlayerHP > GameData.MaxPlayerHP)
-            GameData.PlayerHP = GameData.MaxPlayerHP;
-
-        HUD.instace.SetHealth(GameData.PlayerHP);
-    }
+    }   
 }

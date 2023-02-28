@@ -9,24 +9,24 @@ public class HUD : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bulletText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private Slider HBslider;
-    [SerializeField] private Animator heartAnimator;
+
+    private Animator heartAnimator;
 
     private void Awake()
     {
         instace = this;
+        heartAnimator = transform.GetChild(0).GetChild(2).gameObject.GetComponent<Animator>();
     }
 
     private void Start()
     {
-        SetAmmoCount(30);
-        heartAnimator.speed = 1.2f;
-        SetHealth(GameData.PlayerHP);
-        SetScore(0);
+        heartAnimator.speed = 1.2f;        
+        AddScore(0);
     }
 
     public int SetAmmoCount(int newAmmo)
     {
-        bulletText.text = newAmmo.ToString() + "/30";
+        bulletText.text = newAmmo.ToString() + "/21";
 
         return newAmmo;
     }
@@ -38,7 +38,7 @@ public class HUD : MonoBehaviour
         heartAnimator.speed = (float)(1.2f + Mathf.Abs(currentHP - 10) * 0.2);
     }
 
-    public void SetScore(int amount)
+    public void AddScore(int amount)
     {
         GameData.Score += amount;
         scoreText.text = GameData.Score.ToString();

@@ -14,6 +14,9 @@ public class SpawnEntities : MonoBehaviour
         enemiesParent = transform.GetChild(1);
     }
 
+    /*
+     * 
+     */
     public void SpawnHandler()
     {
         for (int i = 1; i < roomParent.childCount - 1; i++)

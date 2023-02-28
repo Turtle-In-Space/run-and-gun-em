@@ -18,6 +18,9 @@ public class LeaderboardController : MonoBehaviour
         StartCoroutine("GetTopHighscoreRoutine");
     }
 
+    /*
+     * Byter till Menu scen
+     */
     public void LoadMenu()
     {
         Time.timeScale = 1f;
@@ -25,6 +28,11 @@ public class LeaderboardController : MonoBehaviour
         levelLoader.ChangeLevel((int)Scene.Menu);
     }
 
+    /*
+     * Tar 10 högsta scores från online lista
+     * formaterar till "[RANK]. NAMEMCNAMEFACE    [SCORE]
+     * Skriver ut scores
+     */
     private IEnumerator GetTopHighscoreRoutine()
     {
         bool done = false;
@@ -38,7 +46,6 @@ public class LeaderboardController : MonoBehaviour
                 string tempPlayerName = "";
                 string tempPlayerScore = "";
 
-                //Sätter Rank. Name Score "X. NAMEMCNAMEFACE   XXXX"
                 foreach (LootLockerLeaderboardMember member in members)
                 {
                     tempPlayerName += member.rank + ". ";

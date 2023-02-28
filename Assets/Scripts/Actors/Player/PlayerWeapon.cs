@@ -3,49 +3,64 @@ using UnityEngine;
 public class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform firePoint;
-    [SerializeField] private GameObject gunSmoke;
 
+    private Transform firePoint;
     private Animator animator;
     private ParticleSystem gunSmokeParticleSys;
 
     private readonly float bulletSpreadMultiplier = 0.18f;
     private readonly float bulletDelay = 0.2f;
     private readonly int bulletForce = 50;
+    private readonly int maxAmmoCount = 21;
     private float lastShot = 0;
-    private int ammoCount = 30;
+    private int currentAmmo = 21;
 
 
     private void Awake()
     {
+        firePoint = transform.GetChild(0);
+
+        gunSmokeParticleSys = firePoint.GetChild(0).gameObject.GetComponent<ParticleSystem>();
         animator = GetComponent<Animator>();
-        gunSmokeParticleSys = gunSmoke.GetComponent<ParticleSystem>();
-        animator.GetBehaviour<CallReload>().playerWeapon = this;
+    }
+
+    private void Start()
+    {
+        HUD.instace.SetAmmoCount(maxAmmoCount);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && ammoCount != 30)
+        if (Input.GetKeyDown(KeyCode.R) && currentAmmo != maxAmmoCount)
         {
-            animator.SetTrigger("Reload");
-            ammoCount = HUD.instace.SetAmmoCount(0);
-            AudioManager.instance.Play("ARReload");
+            Reload();
         }
     }
 
+    /*
+     * Kollar om man kan skjuta
+     */
     private void FixedUpdate()
     {
-        if (Input.GetButton("Fire1") && ammoCount > 0)
+        if (Input.GetButton("Fire1"))
         {
-            animator.SetBool("isFiring", true);
-
-            //Delay mellan skott
-            if (Input.GetButton("Fire1") && Time.time - lastShot > bulletDelay)
+            if (currentAmmo != 0)
             {
-                lastShot = Time.time;
-                Shoot();
-                ammoCount = HUD.instace.SetAmmoCount(ammoCount - 1);
+                animator.SetBool("isFiring", true);
+
+                //Delay mellan skott
+                if (Time.time - lastShot > bulletDelay)
+                {
+                    lastShot = Time.time;
+                    Shoot();
+                    currentAmmo = HUD.instace.SetAmmoCount(currentAmmo - 1);
+                }
             }
+            else
+            {
+                AudioManager.instance.Play("AREmpty");
+            }
+            
         }
         else
         {
@@ -53,6 +68,19 @@ public class PlayerWeapon : MonoBehaviour
         }
     }
 
+    /*
+     * Kallas från Animation
+     * Ger ammo
+     */
+    public void OnReloadFinished()
+    {
+        currentAmmo = HUD.instace.SetAmmoCount(maxAmmoCount);
+    }
+
+    /*
+     * Skapar ett skott
+     * Spelar bild och ljud effekter
+     */
     private void Shoot()
     {
         Vector2 bulletDirection = new Vector2(firePoint.right.x + Random.Range(-bulletSpreadMultiplier, bulletSpreadMultiplier), firePoint.right.y + Random.Range(-bulletSpreadMultiplier, bulletSpreadMultiplier)).normalized;
@@ -67,9 +95,14 @@ public class PlayerWeapon : MonoBehaviour
         AudioManager.instance.Play("ARShot");
     }
 
-    //Kallas från Animator
-    public void OnReloadFinished()
+    /*
+     * Startar animationer
+     * Tar bort ammo
+     */
+    private void Reload()
     {
-        ammoCount = HUD.instace.SetAmmoCount(30);
+        animator.SetTrigger("Reload");
+        currentAmmo = HUD.instace.SetAmmoCount(0);
+        AudioManager.instance.Play("ARReload");
     }
 }

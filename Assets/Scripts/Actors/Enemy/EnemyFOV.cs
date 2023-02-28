@@ -2,14 +2,24 @@ using UnityEngine;
 
 public class EnemyFOV: MonoBehaviour
 {
+    [HideInInspector]
     public bool canSeePlayer;
 
-    [SerializeField] private EnemyAI AI;
+    private EnemyAI AI;
 
     private readonly int wallMask = 1 << 10;
     private readonly int doorMask = 1 << 13;
 
 
+    private void Awake()
+    {
+        AI = GetComponentInParent<EnemyAI>();
+    }
+
+    /*
+     * Kollar om Enemy kan se spelare
+     * Och om den tappar spelaren kallar den funktion för att leta spelare
+     */
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -32,6 +42,10 @@ public class EnemyFOV: MonoBehaviour
         }
     }
 
+    /*
+     * Om enemy ser spelaren sen lämnare spelaren FOV
+     * Starta funktioner för att leta spelare
+     */
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

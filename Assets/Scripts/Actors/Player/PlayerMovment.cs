@@ -22,7 +22,20 @@ public class PlayerMovment : MonoBehaviour
         camera = Camera.main;
     }
 
-    void Update()
+    private void Update()
+    {
+        GetInputs();
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
+    }
+
+    /*
+     * Tar movment inputs och direction
+     */
+    private void GetInputs()
     {
         speed.x = Input.GetAxisRaw("Horizontal");
         speed.y = Input.GetAxisRaw("Vertical");
@@ -32,7 +45,11 @@ public class PlayerMovment : MonoBehaviour
         mousePos = camera.ScreenToWorldPoint(Input.mousePosition);
     }
 
-    private void FixedUpdate()
+    /*
+     * Flyttar spelare med speed
+     * Vänder spelare mot musen
+     */
+    private void Move()
     {
         rigidbody.MovePosition(rigidbody.position + moveSpeed * Time.deltaTime * speed);
 

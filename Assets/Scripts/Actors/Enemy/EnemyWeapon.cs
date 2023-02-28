@@ -2,9 +2,9 @@
 
 public class EnemyWeapon : MonoBehaviour
 {
-    [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject bulletPrefab;
 
+    private Transform firePoint;
     private Animator animator;
     private ParticleSystem particleGunSmoke;
 
@@ -17,11 +17,16 @@ public class EnemyWeapon : MonoBehaviour
 
     private void Awake()
     {
+        firePoint = transform.GetChild(0);
         particleGunSmoke = transform.GetChild(0).GetChild(0).GetComponent<ParticleSystem>();
         animator = GetComponent<Animator>();
-        animator.GetBehaviour<EnemyCallReload>().enemyWeapon = this;
     }
 
+    /*
+     * Skapar ett skott
+     * Lägger till ljud och bild effkter
+     * Om inga skott finns, ladda om
+     */
     public void Shoot()
     {
         if (Time.time - lastShot > bulletDelay && ammoCount > 0)
@@ -41,14 +46,22 @@ public class EnemyWeapon : MonoBehaviour
         }
         else if (ammoCount == 0)
         {
-            animator.SetBool("isShooting", false);
-            animator.SetTrigger("Reload");
-            AudioManager.instance.Play("PistolReload");
+            Reload();
         }
     }
 
     public void OnReloadFinished()
     {
         ammoCount = 15;
+    }
+
+    /*
+     * Bild och ljud effkter
+     */
+    private void Reload()
+    {
+        animator.SetBool("isShooting", false);
+        animator.SetTrigger("Reload");
+        AudioManager.instance.Play("PistolReload");
     }
 }

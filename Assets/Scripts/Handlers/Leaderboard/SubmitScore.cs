@@ -4,17 +4,13 @@ using LootLocker.Requests;
 
 public class SubmitScore : MonoBehaviour
 {
-    private IEnumerator corutine;
     private readonly string leaderboardKey = "globalScore";
 
 
-    public void StartScoreRutine(int score)
-    {
-        corutine = SubmitScoreRutine(score);
-        StartCoroutine(corutine);
-    }
-
-    private IEnumerator SubmitScoreRutine(int score)
+    /*
+     * Skickar spelar score till online leaderboard
+     */
+    public IEnumerator SubmitScoreRutine(int score)
     {
         bool done = false;
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using TMPro;
 
 public class DeathScreen : MonoBehaviour
@@ -25,7 +26,9 @@ public class DeathScreen : MonoBehaviour
         scoreText.text = "Score: " + GameData.Score;
         levelText.text = "Level: " + GameData.Level;
 
-        submitScore.StartScoreRutine(GameData.Score);
+        IEnumerator coroutine = submitScore.SubmitScoreRutine(GameData.Score);
+        submitScore.StartCoroutine(coroutine);
+
     }
 
     public void ExitGame()

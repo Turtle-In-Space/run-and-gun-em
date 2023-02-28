@@ -117,7 +117,6 @@ public class EnemyAI : MonoBehaviour
 
     /*
      * Spelar ljud och bild effekter
-     * Uppdaterar score
      * Chans att droppa healthkit
      * Tar bort enemy
      */
@@ -127,8 +126,7 @@ public class EnemyAI : MonoBehaviour
         GameObject blood = Instantiate(bloodDeath, transform.position, Quaternion.identity);
         Destroy(blood, 3f);
 
-        HUD.instace.AddScore(100);
-        Game_Manager.instance.EnemyKilled();
+        Game_Manager.instance.OnEnemyKilled();
 
         int value = Random.Range(0, 100);
         if (value < healthKitDropChance)

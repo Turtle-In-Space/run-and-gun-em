@@ -5,12 +5,16 @@ public class LastRoom : MonoBehaviour
     public static LastRoom instance;
 
     private LevelLoaderScript levelLoaderScript;
+    private GameObject FKey;
+
     private bool isLevelFinished = false;
 
 
     private void Awake()
     {
         instance = this;
+        FKey = transform.parent.GetChild(1).gameObject;
+
     }
 
     private void Start()
@@ -18,20 +22,20 @@ public class LastRoom : MonoBehaviour
         levelLoaderScript = GameObject.Find("LevelLoader").GetComponent<LevelLoaderScript>();
     }
 
-    public void LevelFinished()
-    {
-        isLevelFinished = true;
-        GetComponentInChildren<SpriteRenderer>().color = new Color32(66, 101, 63, 110);
-    }
-
+    /*
+     * Visar F-key
+     */
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            transform.parent.GetChild(1).gameObject.SetActive(true);
+            FKey.SetActive(true);
         }
     }
 
+    /*
+     * Byter bana om F trycks
+     */
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && Input.GetKey(KeyCode.F) && isLevelFinished)
@@ -40,11 +44,20 @@ public class LastRoom : MonoBehaviour
         }
     }
 
+    /*
+     * Gömmer F-key
+     */
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             transform.parent.GetChild(1).gameObject.SetActive(false);
         }
-    }    
+    }
+
+    public void OnLevelFinished()
+    {
+        isLevelFinished = true;
+        GetComponentInChildren<SpriteRenderer>().color = new Color32(66, 101, 63, 110);
+    }           
 }

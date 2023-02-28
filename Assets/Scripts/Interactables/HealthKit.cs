@@ -16,6 +16,7 @@ public class HealthKit : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             playerHandler.Heal(amountofHP);
+            AudioManager.instance.Play("HealthKit");
             Destroy(gameObject);
         }
     }

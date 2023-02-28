@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class DoorHandler : MonoBehaviour
 {
+    [HideInInspector]
     public bool canExplode = false;
 
     [SerializeField] private GameObject explosionPrefab;
@@ -17,6 +18,9 @@ public class DoorHandler : MonoBehaviour
         EKey = transform.parent.GetChild(1).gameObject;
     }
 
+    /*
+     * Visar när spelare kan spränga dörr
+     */
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && canExplode)
@@ -25,6 +29,9 @@ public class DoorHandler : MonoBehaviour
         }
     }
 
+    /*
+     * Spränger dörr om E klickas
+     */
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (Input.GetKey(KeyCode.E) && canExplode && collision.CompareTag("Player"))
@@ -37,6 +44,9 @@ public class DoorHandler : MonoBehaviour
         }
     }
 
+    /*
+     * Gömmer E-key
+     */
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && canExplode)
@@ -45,6 +55,9 @@ public class DoorHandler : MonoBehaviour
         }
     }
 
+    /*
+     * Om enemy är i närheten så vänder sig de mot explosionen
+     */
     private void AlertEnemies()
     {
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, 15, enemyLayerMask);

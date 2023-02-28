@@ -2,15 +2,21 @@ using System.Collections;
 using UnityEngine;
 using LootLocker.Requests;
 
-public class SubmitScore : MonoBehaviour
+public class SubmitScoreScript : MonoBehaviour
 {
     private readonly string leaderboardKey = "globalScore";
 
 
+    public void SubmitScore(int score)
+    {
+        IEnumerator coroutine = SubmitScoreRutine(score);
+        StartCoroutine(coroutine);
+    }
+
     /*
      * Skickar spelar score till online leaderboard
      */
-    public IEnumerator SubmitScoreRutine(int score)
+    private IEnumerator SubmitScoreRutine(int score)
     {
         bool done = false;
 

@@ -10,21 +10,18 @@ public class UserHandler : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine("LoginRoutine");     
+        IEnumerator coroutine = LoginRoutine();
+        StartCoroutine(coroutine);     
     }
 
     /*
-     * Sätter spelare namn i online leaderboard
+     * Sätter spelare namn i leaderboard
      */
     public void SetPlayerName()
     {
         LootLockerSDKManager.SetPlayerName(inputField.text, (response) =>
         {
-            if (response.success)
-            {
-                Debug.Log("Player name set success");
-            }
-            else
+            if (!response.success)
             {
                 Debug.Log("Player name set failed" + response.Error);
             }

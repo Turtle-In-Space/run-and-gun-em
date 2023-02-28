@@ -1,10 +1,18 @@
 using UnityEngine;
 
+
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private LevelLoaderScript levelLoader;
 
+    private SubmitScoreScript submitScore;
+
+
+    private void Awake()
+    {
+        submitScore = GetComponent<SubmitScoreScript>();        
+    }
 
     private void Update()
     {
@@ -14,6 +22,9 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    /*
+     * Pausar och av pausar spelet
+     */
     public void Pause()
     {
         if (GameData.isGamePaused)
@@ -34,12 +45,16 @@ public class PauseMenu : MonoBehaviour
 
     public void ExitGame()
     {
+        submitScore.SubmitScore(GameData.Score);
+
         Application.Quit();
         Debug.Log("Quit!");
     }
 
     public void LoadMenu()
     {
+        submitScore.SubmitScore(GameData.Score);
+
         Time.timeScale = 1f;
         GameData.isGamePaused = false;
         levelLoader.ChangeLevel((int)Scene.Menu);

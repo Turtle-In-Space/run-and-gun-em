@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpawnEntities : MonoBehaviour
+public class SpawnEnemies : MonoBehaviour
 {
     [SerializeField] private GameObject enemy;
 
@@ -15,7 +15,8 @@ public class SpawnEntities : MonoBehaviour
     }
 
     /*
-     * 
+     * räknar ut antal fiender per rum
+     * Kallar SpawnEnemy
      */
     public void SpawnHandler()
     {
@@ -32,6 +33,13 @@ public class SpawnEntities : MonoBehaviour
         }
     }
 
+    /*
+     * Hittar en positon inom "roomBounds"
+     * Om giltig position
+     * Sätt ut fiende
+     * 
+     * Om inte giltig, kalla sig själv
+     */
     private void SpawnEnemy(Bounds roomBounds)
     {             
         float randPosX = Random.Range(roomBounds.min.x, roomBounds.max.x);
@@ -50,6 +58,11 @@ public class SpawnEntities : MonoBehaviour
         }
     }
 
+    /*
+     * Kollar om "randPos" är en giltig position i rummet
+     * 
+     * Retunerar sant eller falskt
+     */
     private bool IsValidPosition(Vector3 randPos)
     {
         bool inRoom = false;

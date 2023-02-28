@@ -8,7 +8,7 @@ public class Game_Manager : MonoBehaviour
     [SerializeField] private GameObject MainCamera;
 
     private LevelCreator levelCreator;
-    private SpawnEntities spawnEntities;
+    private SpawnEnemies spawnEnemies;
 
     private int amountOfEnemies;
 
@@ -17,7 +17,7 @@ public class Game_Manager : MonoBehaviour
     {
         instance = this;
         levelCreator = GetComponent<LevelCreator>();
-        spawnEntities = GetComponent<SpawnEntities>();
+        spawnEnemies = GetComponent<SpawnEnemies>();
     }
 
     private void Start()
@@ -26,17 +26,25 @@ public class Game_Manager : MonoBehaviour
         CreateNewLevel();
     }
 
-    public void EnemyKilled()
+    /*
+     * Lägger till score
+     * Håller reda på antal döda fiender
+     */
+    public void OnEnemyKilled()
     {
+        HUD.instace.AddScore(100);
         amountOfEnemies -= 1;
         if (amountOfEnemies <= 0)
-            LastRoom.instance.LevelFinished();
+            LastRoom.instance.OnLevelFinished();
     }
 
+    /*
+     * Insansierar Level, fiender, spelare och kamera
+     */
     private void CreateNewLevel()
     {
         levelCreator.GenerateLevel();
-        spawnEntities.SpawnHandler();
+        spawnEnemies.SpawnHandler();
         amountOfEnemies = transform.GetChild(1).childCount;
 
         Instantiate(MainCamera);

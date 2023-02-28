@@ -99,3 +99,8 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
+  - name: HealthKit
+    clip: {fileID: 8300000, guid: cc7e297eb25d64742ad13b82999e2657, type: 3}
+    volume: 0.2
+    loop: 0
+    source: {fileID: 0}

@@ -67,7 +67,7 @@ public class PlayerHandler : MonoBehaviour
         Destroy(blood, 3f);
 
         GameData.isPlayerDead = true;
-        DeathScreen.instace.Dead();
+        DeathScreen.instace.OnPlayerDead();
         Destroy(gameObject);
     }   
 }

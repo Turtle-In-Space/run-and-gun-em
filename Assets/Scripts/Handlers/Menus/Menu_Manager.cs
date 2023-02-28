@@ -11,6 +11,10 @@ public class Menu_Manager : MonoBehaviour
         Debug.Log("Quit!");
     }
 
+    /*
+     * Startar spelet
+     * sätter globala variabler
+     */
     public void LoadGameLevel()
     {
         GameData.isPlayerDead = false;

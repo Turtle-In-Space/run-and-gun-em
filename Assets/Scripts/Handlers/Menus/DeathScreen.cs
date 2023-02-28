@@ -1,22 +1,26 @@
 using UnityEngine;
-using System.Collections;
 using TMPro;
 
 public class DeathScreen : MonoBehaviour
 {
     public static DeathScreen instace;
 
-    [SerializeField] private SubmitScore submitScore;
     [SerializeField] private LevelLoaderScript levelLoader;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI levelText;
 
+    private SubmitScoreScript submitScore;
+
     private void Awake()
     {
         instace = this;
+        submitScore = GetComponent<SubmitScoreScript>();
     }
 
-    public void Dead()
+    /*
+     * Pausar spel och visar "DeathScreen" meny
+     */
+    public void OnPlayerDead()
     {
         Time.timeScale = 0f;
         GameData.isGamePaused = true;
@@ -26,8 +30,7 @@ public class DeathScreen : MonoBehaviour
         scoreText.text = "Score: " + GameData.Score;
         levelText.text = "Level: " + GameData.Level;
 
-        IEnumerator coroutine = submitScore.SubmitScoreRutine(GameData.Score);
-        submitScore.StartCoroutine(coroutine);
+        submitScore.SubmitScore(GameData.Score);
 
     }
 

@@ -21,7 +21,10 @@ public class LevelCreator : MonoBehaviour
         roomParent = transform.GetChild(0);
     }
 
-    //Skapar första och sista rummet och sköter skapandet av fler
+    /*
+     * Sätter ut första och sista rummet
+     * kallar SpawnRoom ett antal gånger
+     */
     public void GenerateLevel()
     {
         int numberOfRooms = Random.Range(4, 6);
@@ -39,12 +42,9 @@ public class LevelCreator : MonoBehaviour
     }
 
     /*
-     * Räknar ut position och rotation för nästa rum
-     * Kollar att rummet inte är ivägen
-     *  Om det är ivägen tar de bort rummet och avbryter funktionen
-     *  Om rummet som är ivägen är sista rummet tar den bort alla rum och skapar en ny nivå
-     * Lägger till dörrar på alla platser
-     * Om det är sista rummet som sätts ut sätts även sista rum ytan ut
+     * Sätter ut ett rum på en giltig plats
+     * Spawnar dörrar
+     * Om sista rummet är ogiltigt skapa en ny bana
      */
     private void SpawnRoom(int roomID, DoorData entryDoor)
     {
@@ -87,7 +87,11 @@ public class LevelCreator : MonoBehaviour
         prevRoomRotation = newRotation;
     }
 
-    //Kollar om det finns en collider ivägen för given collider på lager layerMask
+    /*
+     * Kollar om annan collider ligger över "collider" på lager "layerMask"
+     * 
+     * Retunerar lista av colliders som är ivägen
+     */
     private List<Collider2D> IsColliderObstructed(Collider2D collider, LayerMask layerMask)
     {
         ContactFilter2D filter = new ContactFilter2D();
@@ -98,10 +102,12 @@ public class LevelCreator : MonoBehaviour
         return results;
     }
 
-    //Lägger till dörrar till rummet
-    //Ingångens dörr canExplode -> true
-    //Tar bort om det finns en dörr redan vid ingången (från eventuellt tidigare rum)
-    //Om inte ingång lägger till dörren som alternativ för utgång
+    /*
+     * Lägger till dörrar på alla utgångar till "room"
+     * Sätter ingången till "canExplode"
+     * 
+     * Parametrar är för att veta vilket rum och vars det ligger
+     */
     private void AddDoors(int roomID, GameObject room, int newRotation, int connectDoorID)
     {
         possibleExit.Clear();

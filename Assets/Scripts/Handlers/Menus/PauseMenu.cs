@@ -24,12 +24,14 @@ public class PauseMenu : MonoBehaviour
 
     /*
      * Pausar och av pausar spelet
+     * Sänker ljudet då pausat
      */
     public void Pause()
     {
         if (GameData.isGamePaused)
         {
             pauseMenu.SetActive(false);
+            AudioManager.instance.SetVolume("MainTheme", 0.05f);
             Time.timeScale = 1f;
             GameData.isGamePaused = false;
             HUD.instace.gameObject.SetActive(true);
@@ -37,6 +39,7 @@ public class PauseMenu : MonoBehaviour
         else
         {
             pauseMenu.SetActive(true);
+            AudioManager.instance.SetVolume("MainTheme", 0.025f);
             Time.timeScale = 0f;
             GameData.isGamePaused = true;
             HUD.instace.gameObject.SetActive(false);

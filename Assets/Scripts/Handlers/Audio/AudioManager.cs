@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] sounds;
 
-   
+
     private void Awake()
     {
         if (instance == null)
@@ -20,7 +20,7 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         SetUpAudio();
-    }    
+    }
 
     private void Start()
     {
@@ -38,6 +38,21 @@ public class AudioManager : MonoBehaviour
         else
         {
             Debug.Log("Could not play audio " + name + ", did not find!");
+            return;
+        }
+    }
+
+    /*
+     * Ändrar volymen på "name" till "volume"
+     */
+    public void SetVolume(string name, float volume)
+    {
+        Sound sound = Array.Find(sounds, sound => sound.name == name);
+        if (sound != null)
+            sound.source.volume = volume;
+        else
+        {
+            Debug.Log("Could not change volume to " + name + ", did not find!");
             return;
         }
     }

@@ -31,7 +31,7 @@ public class PlayerWeapon : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && currentAmmo != maxAmmoCount)
+        if (Input.GetKeyDown(KeyCode.R) && currentAmmo != maxAmmoCount && !animator.GetBool("isReloading"))
         {
             Reload();
         }
@@ -74,6 +74,7 @@ public class PlayerWeapon : MonoBehaviour
      */
     public void OnReloadFinished()
     {
+        animator.SetBool("isReloading", false);
         currentAmmo = HUD.instace.SetAmmoCount(maxAmmoCount);
     }
 
@@ -101,7 +102,7 @@ public class PlayerWeapon : MonoBehaviour
      */
     private void Reload()
     {
-        animator.SetTrigger("Reload");
+        animator.SetBool("isReloading", true);
         currentAmmo = HUD.instace.SetAmmoCount(0);
         AudioManager.instance.Play("ARReload");
     }

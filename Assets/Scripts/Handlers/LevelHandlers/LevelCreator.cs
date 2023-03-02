@@ -26,7 +26,7 @@ public class LevelCreator : MonoBehaviour
      * kallar SpawnRoom ett antal gånger
      */
     public void GenerateLevel()
-    {
+    {   
         int numberOfRooms = Random.Range(4, 6);
 
         Instantiate(roomData[0].roomPrefab, roomParent);
@@ -69,6 +69,9 @@ public class LevelCreator : MonoBehaviour
                 {
                     Destroy(roomParent.GetChild(i).gameObject);
                 }
+
+                prevRoomPosition = Vector2.zero;
+                prevRoomRotation = 0;
                 GenerateLevel();
             }
 

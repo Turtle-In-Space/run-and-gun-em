@@ -28,6 +28,7 @@ public class PlayerHandler : MonoBehaviour
         GameObject effect = Instantiate(particleHealthEffect);
         effect.GetComponent<FollowTarget>().target = transform;
         effect.GetComponent<ParticleSystem>().Play();
+        Destroy(effect, 1f);
 
         GameData.PlayerHP += amount;
         if (GameData.PlayerHP > GameData.MaxPlayerHP)

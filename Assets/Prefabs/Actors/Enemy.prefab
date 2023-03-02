@@ -123,8 +123,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.12567915, y: -0.051329993}
-  m_Size: {x: 2.5627334, y: 1.622705}
+  m_Offset: {x: 0.6304944, y: 0.06084972}
+  m_Size: {x: 2.771076, y: 1.8470855}
   m_Direction: 1
 --- !u!114 &706661820256500824
 MonoBehaviour:
@@ -153,7 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b530948eb2a4c85b62c26abfbd1420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 1117175133104654446}
   bulletPrefab: {fileID: 8796829914936609648, guid: c42632008b1ad44dfb99d0d9ae66a24d, type: 3}
 --- !u!95 &6125459363672900706
 Animator:
@@ -198,7 +197,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2481251786590226373}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.136, y: -0.548, z: 0}
+  m_LocalPosition: {x: 1.62, y: -0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 194078661774201008}
@@ -285,7 +284,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canSeePlayer: 0
-  AI: {fileID: 706661820256500824}
 --- !u!1001 &1531159998568896750
 PrefabInstance:
   m_ObjectHideFlags: 0

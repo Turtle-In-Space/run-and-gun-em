@@ -1,13 +1,9 @@
 using UnityEngine;
 using System.Collections;
 using LootLocker.Requests;
-using TMPro;
 
 public class UserHandler : MonoBehaviour
 {
-    [SerializeField] private TMP_InputField inputField;
-
-
     private void Start()
     {
         IEnumerator coroutine = LoginRoutine();
@@ -17,14 +13,16 @@ public class UserHandler : MonoBehaviour
     /*
      * Sätter spelare namn i leaderboard
      */
-    public void SetPlayerName()
+    public void SetPlayerName(string name)
     {
-        LootLockerSDKManager.SetPlayerName(inputField.text, (response) =>
+        LootLockerSDKManager.SetPlayerName(name, (response) =>
         {
             if (!response.success)
             {
-                Debug.Log("Player name set failed" + response.Error);
+                Debug.Log(response.Error);
             }
+            else
+                Debug.Log("Name set");
         });
     }
 

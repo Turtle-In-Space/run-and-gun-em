@@ -275,6 +275,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2471115846958646359, guid: 46ce0b1906b5740b290c45bd196c35ae, type: 3}
+      propertyPath: m_text
+      value: Main Menu
+      objectReference: {fileID: 0}
     - target: {fileID: 5268277522554488381, guid: 46ce0b1906b5740b290c45bd196c35ae, type: 3}
       propertyPath: m_fontColor.b
       value: 1
@@ -429,7 +433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8810929651259020007, guid: 46ce0b1906b5740b290c45bd196c35ae, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadMenu
+      value: LoadMainMenu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46ce0b1906b5740b290c45bd196c35ae, type: 3}
@@ -521,6 +525,10 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 690318228760076946, guid: f317c6cf409f84469ba435d306013bd0, type: 3}
+      propertyPath: m_text
+      value: Main Menu
+      objectReference: {fileID: 0}
     - target: {fileID: 5656479256899128590, guid: f317c6cf409f84469ba435d306013bd0, type: 3}
       propertyPath: levelLoader
       value: 
@@ -535,7 +543,7 @@ PrefabInstance:
       objectReference: {fileID: 1296942073}
     - target: {fileID: 5879765789601936418, guid: f317c6cf409f84469ba435d306013bd0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadMenu
+      value: LoadMainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 5879765789601936418, guid: f317c6cf409f84469ba435d306013bd0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

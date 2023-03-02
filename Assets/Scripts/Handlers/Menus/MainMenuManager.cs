@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Menu_Manager : MonoBehaviour
+public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private LevelLoaderScript levelLoader;
 

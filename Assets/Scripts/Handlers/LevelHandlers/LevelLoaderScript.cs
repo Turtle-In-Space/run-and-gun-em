@@ -4,7 +4,8 @@ using UnityEngine.SceneManagement;
 
 public enum Scene
 {
-    Menu,
+    StartScreen,
+    MainMenu,
     Game,
     Leaderboard,
     Options

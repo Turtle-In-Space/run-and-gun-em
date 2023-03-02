@@ -25,7 +25,7 @@ public class LeaderboardController : MonoBehaviour
     {
         Time.timeScale = 1f;
         GameData.isGamePaused = false;
-        levelLoader.ChangeLevel((int)Scene.Menu);
+        levelLoader.ChangeLevel((int)Scene.MainMenu);
     }
 
     /*

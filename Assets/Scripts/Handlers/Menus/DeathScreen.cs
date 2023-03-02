@@ -40,10 +40,10 @@ public class DeathScreen : MonoBehaviour
         Debug.Log("Quit!");
     }
 
-    public void LoadMenu()
+    public void LoadMainMenu()
     {
         Time.timeScale = 1f;
         GameData.isGamePaused = false;
-        levelLoader.ChangeLevel((int)Scene.Menu);
+        levelLoader.ChangeLevel((int)Scene.MainMenu);
     }
 }

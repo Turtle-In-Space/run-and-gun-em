@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461245332592189783}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.32, y: -0.44, z: 0}
+  m_LocalPosition: {x: 1.97, y: -0.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1908858089703476784}
@@ -182,8 +182,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8796829914936609648, guid: 95840ffcd4565449ab3b26b6df63770f, type: 3}
-  firePoint: {fileID: 1461245332592189780}
-  gunSmoke: {fileID: 1908858089703476789}
 --- !u!70 &1461245333297719973
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -197,8 +195,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.2563368, y: -0.2399039}
-  m_Size: {x: 1.7171553, y: 0.91176003}
+  m_Offset: {x: 0.39500418, y: -0.04605346}
+  m_Size: {x: 1.9652939, y: 1.2994727}
   m_Direction: 1
 --- !u!95 &1461245333297719970
 Animator:
@@ -308,11 +306,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45e72a49e31f4475392ce60bc1b44668, type: 3}
---- !u!1 &1908858089703476789 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1697369339095959643, guid: 45e72a49e31f4475392ce60bc1b44668, type: 3}
-  m_PrefabInstance: {fileID: 1005398079963940462}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1908858089703476784 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1697369339095959646, guid: 45e72a49e31f4475392ce60bc1b44668, type: 3}

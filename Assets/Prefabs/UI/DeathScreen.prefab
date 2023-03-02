@@ -719,7 +719,7 @@ GameObject:
   - component: {fileID: 7116536776998585961}
   - component: {fileID: 7116536776998585962}
   - component: {fileID: 8298343218562792644}
-  - component: {fileID: 6446161075322048673}
+  - component: {fileID: 4818434828857645250}
   m_Layer: 5
   m_Name: DeathScreen
   m_TagString: Untagged
@@ -764,7 +764,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_SortingLayerID: 0
   m_SortingOrder: 9
   m_TargetDisplay: 0
@@ -820,11 +820,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c384a1f9442a457aab3970839defe52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  submitScore: {fileID: 6446161075322048673}
   levelLoader: {fileID: 0}
   scoreText: {fileID: 350843479994324705}
   levelText: {fileID: 8975985550921840658}
---- !u!114 &6446161075322048673
+--- !u!114 &4818434828857645250
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -833,7 +832,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7116536776998585963}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f14c44bb0f5cb47db9cbddff08e45d8e, type: 3}
+  m_Script: {fileID: 11500000, guid: 393d1a5eae8d44da09ab73669fad5222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7116536777154942425

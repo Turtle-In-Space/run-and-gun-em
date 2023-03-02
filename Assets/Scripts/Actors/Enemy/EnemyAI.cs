@@ -71,7 +71,7 @@ public class EnemyAI : MonoBehaviour
     {
         Vector2 lookDirection = target - (Vector2)transform.position;
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-        float _turnspeed = turnSpeed * 0.25f;
+        float _turnspeed = turnSpeed * 0.1f;
 
         while (Mathf.Round(transform.eulerAngles.z) != Mathf.Round(angle) && !enemyFOV.canSeePlayer)
         {

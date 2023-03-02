@@ -54,12 +54,12 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Quit!");
     }
 
-    public void LoadMenu()
+    public void LoadMainMenu()
     {
         submitScore.SubmitScore(GameData.Score);
 
         Time.timeScale = 1f;
         GameData.isGamePaused = false;
-        levelLoader.ChangeLevel((int)Scene.Menu);
+        levelLoader.ChangeLevel((int)Scene.MainMenu);
     }
 }

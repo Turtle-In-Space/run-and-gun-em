@@ -8,7 +8,7 @@ public class PlayerWeapon : MonoBehaviour
     private Animator animator;
     private ParticleSystem gunSmokeParticleSys;
 
-    private readonly float bulletSpreadMultiplier = 0.18f;
+    private readonly float bulletSpreadMultiplier = 0.09f;
     private readonly float bulletDelay = 0.2f;
     private readonly int bulletForce = 50;
     private readonly int maxAmmoCount = 21;

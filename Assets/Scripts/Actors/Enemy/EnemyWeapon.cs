@@ -29,7 +29,11 @@ public class EnemyWeapon : MonoBehaviour
      */
     public void Shoot()
     {
-        if (Time.time - lastShot > bulletDelay && ammoCount > 0)
+        if (ammoCount == 0)
+        {
+            Reload();
+        }
+        else if (Time.time - lastShot > bulletDelay)
         {
             particleGunSmoke.Play();
             animator.SetBool("isShooting", true);
@@ -43,10 +47,6 @@ public class EnemyWeapon : MonoBehaviour
             rigidbody.AddForce(bulletDirection * bulletForce, ForceMode2D.Impulse);
 
             AudioManager.instance.Play("PistolShot");
-        }
-        else if (ammoCount == 0)
-        {
-            Reload();
         }
     }
 

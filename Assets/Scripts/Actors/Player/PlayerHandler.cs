@@ -9,7 +9,7 @@ public class PlayerHandler : MonoBehaviour
 
     private void Start()
     {
-        HUD.instace.SetHealth(GameData.PlayerHP);
+        HUD.instance.SetHealth(GameData.PlayerHP);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -34,20 +34,20 @@ public class PlayerHandler : MonoBehaviour
         if (GameData.PlayerHP > GameData.MaxPlayerHP)
             GameData.PlayerHP = GameData.MaxPlayerHP;
 
-        HUD.instace.SetHealth(GameData.PlayerHP);
+        HUD.instance.SetHealth(GameData.PlayerHP);
     }
 
     /*
      * Ta bort damage från HP
      * Spela ljud och bild effekt
      */
-    private void TakeDamage(int damage)
+    private void TakeDamage(int amount)
     {        
         GameObject blood = Instantiate(particleBloodShot, transform.position, Quaternion.identity);
         Destroy(blood, 3f);
 
-        GameData.PlayerHP -= damage;
-        HUD.instace.SetHealth(GameData.PlayerHP);
+        GameData.PlayerHP -= amount;
+        HUD.instance.SetHealth(GameData.PlayerHP);
 
         if (GameData.PlayerHP <= 0 && !GameData.isPlayerDead)
         {
@@ -68,7 +68,7 @@ public class PlayerHandler : MonoBehaviour
         Destroy(blood, 3f);
 
         GameData.isPlayerDead = true;
-        DeathScreen.instace.OnPlayerDead();
+        DeathScreen.instance.OnPlayerDead();
         Destroy(gameObject);
     }   
 }

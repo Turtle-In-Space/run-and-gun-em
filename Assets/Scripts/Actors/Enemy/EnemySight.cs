@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyFOV: MonoBehaviour
+public class EnemySight: MonoBehaviour
 {
     [HideInInspector]
     public bool canSeePlayer;

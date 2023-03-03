@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private GameObject healthKit;
 
     private EnemyWeapon weapon;
-    private EnemyFOV enemyFOV;
+    private EnemySight enemySight;
     private Transform playerTransform;
     private new Rigidbody2D rigidbody;
     private Animator animator;
@@ -25,7 +25,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Awake()
     {
-        enemyFOV = GetComponentInChildren<EnemyFOV>();
+        enemySight = GetComponentInChildren<EnemySight>();
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         weapon = GetComponent<EnemyWeapon>();
@@ -38,7 +38,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        if(enemyFOV.canSeePlayer)
+        if(enemySight.canSeePlayer)
         {
             LookAt(playerTransform.position);
             weapon.Shoot();
@@ -69,15 +69,14 @@ public class EnemyAI : MonoBehaviour
      */
     public IEnumerator LookAtRoutine(Vector2 target)
     {
-        Vector2 lookDirection = target - (Vector2)transform.position;
-        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+        int tolerance = 5;
         float _turnspeed = turnSpeed * 0.1f;
+        Vector2 desiredDirection = target - (Vector2)transform.position;
+        float desiredAngle = Mathf.Atan2(desiredDirection.y, desiredDirection.x) * Mathf.Rad2Deg;
 
-        while (Mathf.Round(transform.eulerAngles.z) != Mathf.Round(angle) && !enemyFOV.canSeePlayer)
+        while (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, desiredAngle)) > tolerance && !enemySight.canSeePlayer)
         {
-            lookDirection = target - (Vector2)transform.position;
-            angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle), _turnspeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, desiredAngle), _turnspeed * Time.deltaTime);
             yield return null;
 
         }

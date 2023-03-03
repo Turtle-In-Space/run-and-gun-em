@@ -32,7 +32,7 @@ public class Game_Manager : MonoBehaviour
      */
     public void OnEnemyKilled()
     {
-        HUD.instace.AddScore(100);
+        HUD.instance.AddScore(100);
         amountOfEnemies -= 1;
         if (amountOfEnemies <= 0)
             LastRoom.instance.OnLevelFinished();

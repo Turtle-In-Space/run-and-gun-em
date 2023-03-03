@@ -34,7 +34,7 @@ public class PauseMenu : MonoBehaviour
             AudioManager.instance.SetVolume("MainTheme", 0.05f);
             Time.timeScale = 1f;
             GameData.isGamePaused = false;
-            HUD.instace.gameObject.SetActive(true);
+            HUD.instance.gameObject.SetActive(true);
         }
         else
         {
@@ -42,7 +42,7 @@ public class PauseMenu : MonoBehaviour
             AudioManager.instance.SetVolume("MainTheme", 0.025f);
             Time.timeScale = 0f;
             GameData.isGamePaused = true;
-            HUD.instace.gameObject.SetActive(false);
+            HUD.instance.gameObject.SetActive(false);
         }
     }
 

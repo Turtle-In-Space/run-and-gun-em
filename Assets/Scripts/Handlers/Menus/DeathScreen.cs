@@ -3,7 +3,7 @@ using TMPro;
 
 public class DeathScreen : MonoBehaviour
 {
-    public static DeathScreen instace;
+    public static DeathScreen instance;
 
     [SerializeField] private LevelLoaderScript levelLoader;
     [SerializeField] private TextMeshProUGUI scoreText;
@@ -13,7 +13,7 @@ public class DeathScreen : MonoBehaviour
 
     private void Awake()
     {
-        instace = this;
+        instance = this;
         submitScore = GetComponent<SubmitScoreScript>();
     }
 
@@ -24,20 +24,25 @@ public class DeathScreen : MonoBehaviour
     {
         Time.timeScale = 0f;
         GameData.isGamePaused = true;
-        HUD.instace.gameObject.SetActive(false);
+        HUD.instance.gameObject.SetActive(false);
         transform.GetChild(0).gameObject.SetActive(true);
 
         scoreText.text = "Score: " + GameData.Score;
         levelText.text = "Level: " + GameData.Level;
 
         submitScore.SubmitScore(GameData.Score);
-
     }
 
-    public void ExitGame()
+    public void Retry()
     {
-        Application.Quit();
-        Debug.Log("Quit!");
+        GameData.isPlayerDead = false;
+        GameData.PlayerHP = GameData.MaxPlayerHP;
+        GameData.Level = 0;
+        GameData.Score = 0;
+
+        Time.timeScale = 1f;
+        GameData.isGamePaused = false;
+        levelLoader.ChangeLevel((int)Scene.Game);
     }
 
     public void LoadMainMenu()

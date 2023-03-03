@@ -4,7 +4,7 @@ using UnityEngine;
 public class DoorHandler : MonoBehaviour
 {
     [HideInInspector]
-    public bool canExplode = false;
+    public bool isDoorExplodable = false;
 
     [SerializeField] private GameObject explosionPrefab;
 
@@ -23,7 +23,7 @@ public class DoorHandler : MonoBehaviour
      */
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && canExplode)
+        if (collision.CompareTag("Player") && isDoorExplodable)
         {
             EKey.SetActive(true);
         }
@@ -34,7 +34,7 @@ public class DoorHandler : MonoBehaviour
      */
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetKey(KeyCode.E) && canExplode && collision.CompareTag("Player"))
+        if (Input.GetKey(KeyCode.E) && isDoorExplodable && collision.CompareTag("Player"))
         {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             AudioManager.instance.Play("DoorExplosion");
@@ -49,7 +49,7 @@ public class DoorHandler : MonoBehaviour
      */
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && canExplode)
+        if (collision.CompareTag("Player") && isDoorExplodable)
         {
             EKey.SetActive(false);
         }

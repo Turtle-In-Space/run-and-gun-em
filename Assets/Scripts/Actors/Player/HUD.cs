@@ -4,7 +4,7 @@ using TMPro;
 
 public class HUD : MonoBehaviour
 {
-    public static HUD instace;
+    public static HUD instance;
 
     [SerializeField] private TextMeshProUGUI bulletText;
     [SerializeField] private TextMeshProUGUI scoreText;
@@ -14,7 +14,7 @@ public class HUD : MonoBehaviour
 
     private void Awake()
     {
-        instace = this;
+        instance = this;
         heartAnimator = transform.GetChild(0).GetChild(2).gameObject.GetComponent<Animator>();
     }
 

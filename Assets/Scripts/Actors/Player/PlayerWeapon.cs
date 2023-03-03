@@ -26,7 +26,7 @@ public class PlayerWeapon : MonoBehaviour
 
     private void Start()
     {
-        HUD.instace.SetAmmoCount(maxAmmoCount);
+        HUD.instance.SetAmmoCount(maxAmmoCount);
     }
 
     private void Update()
@@ -53,7 +53,7 @@ public class PlayerWeapon : MonoBehaviour
                 {
                     lastShot = Time.time;
                     Shoot();
-                    currentAmmo = HUD.instace.SetAmmoCount(currentAmmo - 1);
+                    currentAmmo = HUD.instance.SetAmmoCount(currentAmmo - 1);
                 }
             }
             else
@@ -75,7 +75,7 @@ public class PlayerWeapon : MonoBehaviour
     public void OnReloadFinished()
     {
         animator.SetBool("isReloading", false);
-        currentAmmo = HUD.instace.SetAmmoCount(maxAmmoCount);
+        currentAmmo = HUD.instance.SetAmmoCount(maxAmmoCount);
     }
 
     /*
@@ -103,7 +103,7 @@ public class PlayerWeapon : MonoBehaviour
     private void Reload()
     {
         animator.SetBool("isReloading", true);
-        currentAmmo = HUD.instace.SetAmmoCount(0);
+        currentAmmo = HUD.instance.SetAmmoCount(0);
         AudioManager.instance.Play("ARReload");
     }
 }

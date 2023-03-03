@@ -9,25 +9,34 @@ public class LevelCreator : MonoBehaviour
 
     private List<DoorData> possibleExit = new List<DoorData>();
     private Transform roomParent;    
-    private Vector3 prevRoomPosition = Vector3.zero;
+    private Vector3 prevRoomPosition;
 
     private readonly int roomLayerMask = 1 << 11;
     private readonly int doorLayerMask = 1 << 13;
-    private int prevRoomRotation = 0;
+    private int prevRoomRotation;
 
 
     private void Awake()
     {
+        Debug.Log(Mathf.DeltaAngle(180, 0));
+        Debug.Log(Mathf.DeltaAngle(270, 0));
+        Debug.Log(Mathf.DeltaAngle(90, 0));
+        Debug.Log(Mathf.DeltaAngle(45, 225));
+
         roomParent = transform.GetChild(0);
-    }
+    }    
 
     /*
      * Sätter ut första och sista rummet
      * kallar SpawnRoom ett antal gånger
      */
     public void GenerateLevel()
-    {   
-        int numberOfRooms = Random.Range(4, 6);
+    {
+        possibleExit.Clear();
+        prevRoomPosition = Vector2.zero;
+        prevRoomRotation = 0;
+
+        int numberOfRooms = Random.Range(20, 32);
 
         Instantiate(roomData[0].roomPrefab, roomParent);
         possibleExit.Add(roomData[0].doorData[0]);
@@ -65,19 +74,14 @@ public class LevelCreator : MonoBehaviour
         {
             if (roomID == 0)
             {
-                for (int i = 0; i < roomParent.childCount; i++)
-                {
-                    Destroy(roomParent.GetChild(i).gameObject);
-                }
-
-                prevRoomPosition = Vector2.zero;
-                prevRoomRotation = 0;
+                RemoveAllRooms();
                 GenerateLevel();
+                return;
             }
 
             Destroy(room);
             return;
-        }        
+        }
        
         AddDoors(roomID, room, newRotation, connectDoorID);
 
@@ -123,7 +127,7 @@ public class LevelCreator : MonoBehaviour
 
             if (i == connectDoorID)
             {
-                Door.GetComponentInChildren<DoorHandler>().canExplode = true;
+                Door.GetComponentInChildren<DoorHandler>().isDoorExplodable = true;
                 List<Collider2D> doorCollider = IsColliderObstructed(Door.GetComponentInChildren<BoxCollider2D>(), doorLayerMask);
                 if (doorCollider.Count != 0)
                 {
@@ -134,6 +138,14 @@ public class LevelCreator : MonoBehaviour
             {
                 possibleExit.Add(roomData[roomID].doorData[i]);
             }
+        }
+    }
+
+    private void RemoveAllRooms()
+    {
+        for (int i = 0; i < roomParent.childCount; i++)
+        {
+            Destroy(roomParent.GetChild(i).gameObject);
         }
     }
 }

@@ -419,6 +419,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5268277523929014446, guid: 46ce0b1906b5740b290c45bd196c35ae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5268277524041134876, guid: 46ce0b1906b5740b290c45bd196c35ae, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -552,6 +556,10 @@ PrefabInstance:
     - target: {fileID: 7116536776998585963, guid: f317c6cf409f84469ba435d306013bd0, type: 3}
       propertyPath: m_Name
       value: DeathScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 7116536776998585963, guid: f317c6cf409f84469ba435d306013bd0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7116536776998585967, guid: f317c6cf409f84469ba435d306013bd0, type: 3}
       propertyPath: m_Pivot.x

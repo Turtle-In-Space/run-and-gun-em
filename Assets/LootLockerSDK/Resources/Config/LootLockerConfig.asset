@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: LootLockerConfig
   m_EditorClassIdentifier: 
   apiKey: dev_0db5a2c0ceec43178e7e7b22add32544
-  token: 455ac51d94975dc9cd5979f40bf5e35c07f43d62
+  token: 5fc8666f78990c54eaf308e45937d2610510d927
   adminToken: 
-  domainKey: https://r52kmp00.api.lootlocker.io/
+  domainKey: r52kmp00
   gameID: 0
-  game_version: 1.0.0.0
-  deviceID: 751fb9e5-0516-4fd2-91ba-6d55aa2cc50a
+  game_version: 1.0.2.0
+  deviceID: f26cf590-224e-436b-a3ef-f2aa2987d315
   platform: 4
   developmentMode: 1
   url: https://api.lootlocker.io/game/v1
@@ -26,5 +26,5 @@ MonoBehaviour:
   playerUrl: https://api.lootlocker.io/player
   userUrl: https://api.lootlocker.io/game
   baseUrl: https://api.lootlocker.io
-  currentDebugLevel: 3
+  currentDebugLevel: 0
   allowTokenRefresh: 1

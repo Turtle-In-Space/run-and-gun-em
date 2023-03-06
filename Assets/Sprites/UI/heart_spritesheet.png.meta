@@ -45,6 +45,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -268,6 +269,14 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      heart_spritesheet_4: -1009289850075807635
+      heart_spritesheet_0: -509831202633620846
+      heart_spritesheet_3: -1623535670774673452
+      heart_spritesheet_1: 2990103054016633608
+      heart_spritesheet_6: 7282819540372926619
+      heart_spritesheet_2: 6450683423619042236
+      heart_spritesheet_5: -4134658709962318276
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

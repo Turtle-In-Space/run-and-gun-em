@@ -18,11 +18,6 @@ public class LevelCreator : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log(Mathf.DeltaAngle(180, 0));
-        Debug.Log(Mathf.DeltaAngle(270, 0));
-        Debug.Log(Mathf.DeltaAngle(90, 0));
-        Debug.Log(Mathf.DeltaAngle(45, 225));
-
         roomParent = transform.GetChild(0);
     }    
 
@@ -36,7 +31,7 @@ public class LevelCreator : MonoBehaviour
         prevRoomPosition = Vector2.zero;
         prevRoomRotation = 0;
 
-        int numberOfRooms = Random.Range(20, 32);
+        int numberOfRooms = Random.Range(5, 8);
 
         Instantiate(roomData[0].roomPrefab, roomParent);
         possibleExit.Add(roomData[0].doorData[0]);

@@ -16,7 +16,7 @@ public class EnemyAI : MonoBehaviour
     private Vector2 lastKnownPosition;
     private IEnumerator coroutine;
 
-    private readonly int healthKitDropChance = 10;
+    private readonly int healthKitDropChance = 20;
     private readonly int moveSpeed = 8;
     private readonly float turnSpeed = 30;
     private int health = 2;

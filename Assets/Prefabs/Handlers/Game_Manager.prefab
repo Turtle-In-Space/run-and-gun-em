@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 735133133045460681}
   m_RootOrder: 0
@@ -60,6 +61,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8650004156225208574}
   - {fileID: 7108654058855947438}
@@ -83,12 +85,14 @@ MonoBehaviour:
     - pos: {x: 2.5, y: 0}
       direction: 0
     roomPrefab: {fileID: 572913593474671593, guid: b549150e6646244c2a2d601d01badd29, type: 3}
+    maxEnemies: 0
   - doorData:
     - pos: {x: 16.5, y: 0}
       direction: 0
     - pos: {x: 0, y: 15.5}
       direction: 1
     roomPrefab: {fileID: 4032089574745125216, guid: 7cceb35d90e8c4779b92c4f2e9beda31, type: 3}
+    maxEnemies: 3
   - doorData:
     - pos: {x: 15.5, y: 0}
       direction: 0
@@ -99,12 +103,14 @@ MonoBehaviour:
     - pos: {x: 0, y: -12.5}
       direction: 3
     roomPrefab: {fileID: 2570831565393626229, guid: c6012db9c125f41079354fd5e0f030c2, type: 3}
+    maxEnemies: 4
   - doorData:
     - pos: {x: 21.5, y: 0}
       direction: 0
     - pos: {x: -21.5, y: 0}
       direction: 2
     roomPrefab: {fileID: 5804761894242571762, guid: fd58cc226249f4d5bb9ba0c7b714aa06, type: 3}
+    maxEnemies: 3
   doorPrefab: {fileID: 4040964218671291179, guid: 38044d7b34a50454db298f3f1890d438, type: 3}
   lastRoomArea: {fileID: 1749331349931994965, guid: 834c514145f254f24a9a1f747703d4d5, type: 3}
 --- !u!114 &136043912988772580
@@ -174,6 +180,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 735133133045460681}
   m_RootOrder: 1

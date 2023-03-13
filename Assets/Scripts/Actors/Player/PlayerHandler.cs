@@ -20,7 +20,8 @@ public class PlayerHandler : MonoBehaviour
         }
     }
 
-    /* Lägg till amount HP
+    /* 
+     * Lägg till amount HP
      * Spela bild effekt
      */
     public void Heal(int amount)
@@ -38,7 +39,7 @@ public class PlayerHandler : MonoBehaviour
     }
 
     /*
-     * Ta bort damage från HP
+     * Ta bort amount från HP
      * Spela ljud och bild effekt
      */
     private void TakeDamage(int amount)
@@ -51,7 +52,7 @@ public class PlayerHandler : MonoBehaviour
 
         if (GameData.PlayerHP <= 0 && !GameData.isPlayerDead)
         {
-            Dead();
+            PlayerDead();
             return;
         }
         AudioManager.instance.Play("PlayerHurt");
@@ -61,7 +62,7 @@ public class PlayerHandler : MonoBehaviour
      * Spela ljud och bild effekt
      * Öppna DeathScreen
      */
-    private void Dead()
+    private void PlayerDead()
     {
         AudioManager.instance.Play("PlayerDeath");
         GameObject blood = Instantiate(particleBloodDead, transform.position, Quaternion.identity);

@@ -18,7 +18,7 @@ public class EnemySight: MonoBehaviour
 
     /*
      * Kollar om Enemy kan se spelare
-     * Och om den tappar spelaren kallar den funktion för att leta spelare
+     * Om enemy tappar spelare -> leta
      */
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -27,7 +27,7 @@ public class EnemySight: MonoBehaviour
             Vector2 directionToPlayer = (collision.transform.position - transform.position).normalized;
             float distanceToPlayer = Vector2.Distance(transform.position, collision.transform.position);
 
-            //Kollar om det finns en vägg i vägen
+            //Kollar om det finns en vägg/dörr i vägen
             if (!Physics2D.Raycast(transform.position, directionToPlayer, distanceToPlayer, wallMask))
             {
                 if(!Physics2D.Raycast(transform.position, directionToPlayer, distanceToPlayer, doorMask))

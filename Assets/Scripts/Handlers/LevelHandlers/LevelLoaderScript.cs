@@ -7,8 +7,7 @@ public enum Scene
     StartScreen,
     MainMenu,
     Game,
-    Leaderboard,
-    Options
+    Leaderboard
 }
 
 public class LevelLoaderScript : MonoBehaviour

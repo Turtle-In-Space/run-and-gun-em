@@ -17,6 +17,21 @@ public class DoorHandler : MonoBehaviour
     {
         EKey = transform.parent.GetChild(1).gameObject;
     }
+    
+    /*
+     * Spränger dörr om E klickas
+     */
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") && Input.GetKey(KeyCode.E) && isDoorExplodable)
+        {
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            AudioManager.instance.Play("DoorExplosion");
+            AlertEnemies();
+
+            Destroy(transform.parent.gameObject);
+        }
+    }
 
     /*
      * Visar när spelare kan spränga dörr
@@ -26,21 +41,6 @@ public class DoorHandler : MonoBehaviour
         if (collision.CompareTag("Player") && isDoorExplodable)
         {
             EKey.SetActive(true);
-        }
-    }
-
-    /*
-     * Spränger dörr om E klickas
-     */
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (Input.GetKey(KeyCode.E) && isDoorExplodable && collision.CompareTag("Player"))
-        {
-            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            AudioManager.instance.Play("DoorExplosion");
-            AlertEnemies();
-
-            Destroy(transform.parent.gameObject);
         }
     }
 

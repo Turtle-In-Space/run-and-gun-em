@@ -10,7 +10,11 @@ public class HUD : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private Slider HBslider;
 
+
     private Animator heartAnimator;
+
+    readonly float baseHeartSpeed = 2f;
+
 
     private void Awake()
     {
@@ -20,7 +24,7 @@ public class HUD : MonoBehaviour
 
     private void Start()
     {
-        heartAnimator.speed = 1.2f;        
+        heartAnimator.speed = baseHeartSpeed;        
         AddScore(0);
     }
 
@@ -31,11 +35,14 @@ public class HUD : MonoBehaviour
         return newAmmo;
     }
 
+    /*
+     * Gör så att hjätat slår snabbare ju mindre hp
+     */
     public void SetHealth(int currentHP)
     {
         HBslider.value = currentHP;
 
-        heartAnimator.speed = (float)(1.2f + Mathf.Abs(currentHP - 10) * 0.2);
+        heartAnimator.speed = (float)(baseHeartSpeed + Mathf.Abs(currentHP - GameData.MaxPlayerHP) * 0.3f);
     }
 
     public void AddScore(int amount)

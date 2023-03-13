@@ -11,6 +11,7 @@ public class PlayerMovment : MonoBehaviour
 
     private readonly int moveSpeed = 11;
 
+
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();

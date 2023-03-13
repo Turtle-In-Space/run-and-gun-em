@@ -19,6 +19,10 @@ public class StartScreenScript : MonoBehaviour
         userHandler = GetComponent<UserHandler>();
     }
 
+    /*
+     * Kollar att namnet är giltigt
+     * Visar error eller continue
+     */
     public void OnNameEntered()
     {
         playerName = inputField.text;

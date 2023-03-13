@@ -50,6 +50,9 @@ public class EnemyWeapon : MonoBehaviour
         }
     }
 
+    /*
+     * Kallas från enemy_reload.anim
+     */
     public void OnReloadFinished()
     {
         ammoCount = 15;

@@ -8,4 +8,10 @@ public class ExplosionHandler : MonoBehaviour
     {
         explosion.Play("Explosion");
     }
+
+    public void OnExplosionFinished()
+    {
+        Destroy(gameObject);
+    }
+    
 }

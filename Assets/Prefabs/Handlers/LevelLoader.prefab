@@ -240,8 +240,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6867891685020354277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf51632bb092a42b4b38afce4c914919, type: 3}
+  m_Script: {fileID: 11500000, guid: 89f7c366f44524a1e92b46a390ec5f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   transition: {fileID: 2174325352096340121}
-  transitionTime: 1
+  transitionTime: 0.5

@@ -30,13 +30,18 @@ public class EnemySight: MonoBehaviour
             //Kollar om det finns en vägg/dörr i vägen
             if (!Physics2D.Raycast(transform.position, directionToPlayer, distanceToPlayer, wallMask))
             {
-                if(!Physics2D.Raycast(transform.position, directionToPlayer, distanceToPlayer, doorMask))
+                if (!Physics2D.Raycast(transform.position, directionToPlayer, distanceToPlayer, doorMask))
+                {
                     canSeePlayer = true;
+                }
             }
             else
             {
-                if(canSeePlayer)
+                if (canSeePlayer)
+                {
                     AI.OnLostPlayer(collision.transform.position);
+                }
+
                 canSeePlayer = false;
             }
         }
@@ -50,7 +55,7 @@ public class EnemySight: MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if(canSeePlayer)
+            if (canSeePlayer)
             {
                 AI.OnLostPlayer(collision.transform.position);
                 canSeePlayer = false;

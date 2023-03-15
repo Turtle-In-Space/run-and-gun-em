@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerMovment : MonoBehaviour
 {
-    private new Camera camera;    
+    private new UnityEngine.Camera camera;
     private new Rigidbody2D rigidbody;
-    private Animator animator;  
+    private Animator animator;
 
     private Vector2 speed;
     private Vector2 mousePos;
@@ -12,15 +12,15 @@ public class PlayerMovment : MonoBehaviour
     private readonly int moveSpeed = 11;
 
 
-    void Awake()
+    private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();        
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
     {
-        camera = Camera.main;
+        camera = UnityEngine.Camera.main;
     }
 
     private void Update()
@@ -52,7 +52,7 @@ public class PlayerMovment : MonoBehaviour
      */
     private void Move()
     {
-        rigidbody.MovePosition(rigidbody.position + moveSpeed * Time.deltaTime * speed);
+        rigidbody.MovePosition(rigidbody.position + (moveSpeed * Time.deltaTime * speed));
 
         Vector2 lookDirection = mousePos - rigidbody.position;
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;

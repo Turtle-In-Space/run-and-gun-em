@@ -38,7 +38,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        if(enemySight.canSeePlayer)
+        if (enemySight.canSeePlayer)
         {
             LookAt(playerTransform.position);
             weapon.Shoot();
@@ -102,7 +102,9 @@ public class EnemyAI : MonoBehaviour
     {
         health -= amount;
         if (health <= 0)
+        {
             Die();
+        }
         else
         {
             AudioManager.instance.Play("EnemyHurt");
@@ -125,7 +127,7 @@ public class EnemyAI : MonoBehaviour
         GameObject blood = Instantiate(bloodDeath, transform.position, Quaternion.identity);
         Destroy(blood, 3f);
 
-        Game_Manager.instance.OnEnemyKilled();
+        GameManager.instance.OnEnemyKilled();
 
         int value = Random.Range(0, 100);
         if (value < healthKitDropChance)
@@ -147,7 +149,6 @@ public class EnemyAI : MonoBehaviour
         animator.SetBool("isMoving", true);
         Vector2 direction = position - (Vector2)transform.position;
         rigidbody.MovePosition((Vector2)transform.position + (moveSpeed * Time.deltaTime * direction.normalized));
-
 
         if (Vector2.Distance(transform.position, position) < 0.1)
         {

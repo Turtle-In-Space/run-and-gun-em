@@ -89,7 +89,7 @@ public class PlayerWeapon : MonoBehaviour
         Quaternion bulletRotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, bulletRotation);
-        Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();       
+        Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
         rigidbody.AddForce(bulletDirection * bulletForce, ForceMode2D.Impulse);
 
         gunSmokeParticleSys.Play();

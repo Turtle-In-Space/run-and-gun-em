@@ -10,7 +10,6 @@ public class HUD : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private Slider HBslider;
 
-
     private Animator heartAnimator;
 
     readonly float baseHeartSpeed = 2f;
@@ -24,7 +23,7 @@ public class HUD : MonoBehaviour
 
     private void Start()
     {
-        heartAnimator.speed = baseHeartSpeed;        
+        heartAnimator.speed = baseHeartSpeed;
         AddScore(0);
     }
 
@@ -42,7 +41,7 @@ public class HUD : MonoBehaviour
     {
         HBslider.value = currentHP;
 
-        heartAnimator.speed = (float)(baseHeartSpeed + Mathf.Abs(currentHP - GameData.MaxPlayerHP) * 0.3f);
+        heartAnimator.speed = (float)(baseHeartSpeed + (Mathf.Abs(currentHP - GameData.MaxPlayerHP) * 0.3f));
     }
 
     public void AddScore(int amount)

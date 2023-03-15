@@ -7,7 +7,9 @@ public class FollowTarget : MonoBehaviour
 
     void Update()
     {
-        if(target)
+        if (target)
+        {
             transform.position = target.position;
+        }
     }
 }

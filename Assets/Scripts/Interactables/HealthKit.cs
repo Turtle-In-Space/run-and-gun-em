@@ -2,20 +2,20 @@ using UnityEngine;
 
 public class HealthKit : MonoBehaviour
 {
-    private PlayerHandler playerHandler;
+    private Player player;
     private readonly int amountofHP = 2;
 
 
     private void Start()
     {
-        playerHandler = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHandler>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            playerHandler.Heal(amountofHP);
+            player.Heal(amountofHP);
             AudioManager.instance.Play("HealthKit");
             Destroy(gameObject);
         }

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
+    public static PauseMenu instance;
+
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private LevelLoader levelLoader;
 
@@ -11,6 +13,15 @@ public class PauseMenu : MonoBehaviour
 
     private void Awake()
     {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         submitScore = GetComponent<ScoreSubmission>();        
     }
 

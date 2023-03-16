@@ -6,7 +6,10 @@ public class Explosion : MonoBehaviour
 
     private void Start()
     {
-        explosion.Play("Explosion");
+        if (explosion)
+        {
+            explosion.Play("Explosion");
+        }
     }
 
     public void OnExplosionFinished()

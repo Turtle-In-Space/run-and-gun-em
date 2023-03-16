@@ -49,4 +49,9 @@ public class HUD : MonoBehaviour
         GameData.Score += amount;
         scoreText.text = GameData.Score.ToString();
     }
+
+    public void PauseGame()
+    {
+        PauseMenu.instance.Pause();
+    }
 }

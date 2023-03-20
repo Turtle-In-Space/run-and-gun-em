@@ -51,7 +51,15 @@ public class EnemyAI : MonoBehaviour
         {
             MoveTo(lastKnownPosition);
         }
-    }  
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Damage(1);
+        }
+    }
 
     /*
      * När enemy tappar spelaren startar den funktionerna för att leta spelaren
@@ -108,8 +116,7 @@ public class EnemyAI : MonoBehaviour
         else
         {
             AudioManager.instance.Play("EnemyHurt");
-            GameObject blood = Instantiate(bloodShot, transform.position, Quaternion.identity);
-            Destroy(blood, 3f);
+            Instantiate(bloodShot, transform.position, Quaternion.identity);
 
             coroutine = LookAtRoutine(playerTransform.position);
             StartCoroutine(coroutine);         
@@ -124,8 +131,8 @@ public class EnemyAI : MonoBehaviour
     private void Die()
     {
         AudioManager.instance.Play("EnemyDeath");
-        GameObject blood = Instantiate(bloodDeath, transform.position, Quaternion.identity);
-        Destroy(blood, 3f);
+        Instantiate(bloodDeath, transform.position, Quaternion.identity);
+        
 
         GameManager.instance.OnEnemyKilled();
 
@@ -155,13 +162,5 @@ public class EnemyAI : MonoBehaviour
             lookingForPlayer = false;
             animator.SetBool("isMoving", false);
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-            Damage(1);
-        }
-    }
+    }    
 }

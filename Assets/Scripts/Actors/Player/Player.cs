@@ -46,8 +46,7 @@ public class Player : MonoBehaviour
      */
     private void TakeDamage(int amount)
     {        
-        GameObject blood = Instantiate(particleBloodShot, transform.position, Quaternion.identity);
-        Destroy(blood, 3f);
+        Instantiate(particleBloodShot, transform.position, Quaternion.identity);
 
         GameData.PlayerHP -= amount;
         HUD.instance.SetHealth(GameData.PlayerHP);
@@ -67,8 +66,7 @@ public class Player : MonoBehaviour
     private void PlayerDead()
     {
         AudioManager.instance.Play("PlayerDeath");
-        GameObject blood = Instantiate(particleBloodDead, transform.position, Quaternion.identity);
-        Destroy(blood, 3f);
+        Instantiate(particleBloodDead, transform.position, Quaternion.identity);
 
         GameData.isPlayerDead = true;
         DeathScreen.instance.OnPlayerDead();

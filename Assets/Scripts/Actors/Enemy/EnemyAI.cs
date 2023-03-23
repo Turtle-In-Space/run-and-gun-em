@@ -16,11 +16,14 @@ public class EnemyAI : MonoBehaviour
     private Vector2 lastKnownPosition;
     private IEnumerator coroutine;
 
+    private readonly float turnSpeed = 30f;
     private readonly int healthKitDropChance = 20;
     private readonly int moveSpeed = 8;
-    private readonly float turnSpeed = 30;
+    private readonly int searchAngle = 30;
+    private readonly int searchTolerance = 3;
     private int health = 2;
-    private bool lookingForPlayer;
+    private bool isMovingToPlayer;
+    private bool passiveSearch;
 
 
     private void Awake()
@@ -34,6 +37,10 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+
+        passiveSearch = true;
+        IEnumerator coroutine = PassiveSearchRoutine();
+        StartCoroutine(coroutine);
     }
 
     private void Update()
@@ -47,7 +54,7 @@ public class EnemyAI : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (lookingForPlayer)
+        if (isMovingToPlayer)
         {
             MoveTo(lastKnownPosition);
         }
@@ -68,7 +75,7 @@ public class EnemyAI : MonoBehaviour
     {
         animator.SetBool("isShooting", false);
         lastKnownPosition = lastPosition;
-        lookingForPlayer = true;
+        isMovingToPlayer = true;
     }
 
     /*
@@ -77,16 +84,38 @@ public class EnemyAI : MonoBehaviour
      */
     public IEnumerator LookAtRoutine(Vector2 target)
     {
-        int tolerance = 5;
-        float _turnspeed = turnSpeed * 0.1f;
+        passiveSearch = false;
+        float _turnSpeed = turnSpeed * 0.1f;
         Vector2 desiredDirection = target - (Vector2)transform.position;
         float desiredAngle = Mathf.Atan2(desiredDirection.y, desiredDirection.x) * Mathf.Rad2Deg;
 
-        while (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, desiredAngle)) > tolerance && !enemySight.canSeePlayer)
+        while (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, desiredAngle)) > searchTolerance && !enemySight.canSeePlayer)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, desiredAngle), _turnspeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, desiredAngle), _turnSpeed * Time.deltaTime);
             yield return null;
+            
+        }
+    }
 
+    /*
+     * Fienden vänder sig om då den inte har sett spelaren än
+     */
+    private IEnumerator PassiveSearchRoutine()
+    {
+        float angle0 = transform.eulerAngles.z + searchAngle;
+        float angle1 = transform.eulerAngles.z - searchAngle;
+        float desiredAngle = angle0;
+        float _turnSpeed = turnSpeed * 0.05f;
+
+        while (passiveSearch)
+        {
+            while (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, desiredAngle)) > searchTolerance)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, desiredAngle), _turnSpeed * Time.deltaTime);
+                yield return null;
+            }
+            yield return new WaitForSeconds(1f);
+            desiredAngle = desiredAngle == angle0 ? angle1 : angle0;
         }
     }
 
@@ -96,6 +125,7 @@ public class EnemyAI : MonoBehaviour
      */
     private void LookAt(Vector2 target)
     {
+        passiveSearch = false;
         Vector2 lookDirection = target - (Vector2)transform.position;
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle), turnSpeed * Time.deltaTime);
@@ -117,7 +147,7 @@ public class EnemyAI : MonoBehaviour
         {
             AudioManager.instance.Play("EnemyHurt");
             Instantiate(bloodShot, transform.position, Quaternion.identity);
-
+            
             coroutine = LookAtRoutine(playerTransform.position);
             StartCoroutine(coroutine);         
         }
@@ -159,8 +189,8 @@ public class EnemyAI : MonoBehaviour
 
         if (Vector2.Distance(transform.position, position) < 0.1)
         {
-            lookingForPlayer = false;
+            isMovingToPlayer = false;
             animator.SetBool("isMoving", false);
         }
-    }    
+    }
 }

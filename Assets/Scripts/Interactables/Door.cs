@@ -65,6 +65,7 @@ public class Door : MonoBehaviour
         foreach (Collider2D enemy in enemies)
         {
             EnemyAI enemyAI = enemy.gameObject.GetComponent<EnemyAI>();
+
             IEnumerator coroutine = enemyAI.LookAtRoutine(transform.position);
             enemyAI.StartCoroutine(coroutine);
         }

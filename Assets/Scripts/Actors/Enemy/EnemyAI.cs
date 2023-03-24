@@ -85,6 +85,7 @@ public class EnemyAI : MonoBehaviour
     public IEnumerator LookAtRoutine(Vector2 target)
     {
         passiveSearch = false;
+        yield return null;
         float _turnSpeed = turnSpeed * 0.1f;
         Vector2 desiredDirection = target - (Vector2)transform.position;
         float desiredAngle = Mathf.Atan2(desiredDirection.y, desiredDirection.x) * Mathf.Rad2Deg;

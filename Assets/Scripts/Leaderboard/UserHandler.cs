@@ -1,9 +1,13 @@
 using UnityEngine;
 using System.Collections;
 using LootLocker.Requests;
+using TMPro;
 
 public class UserHandler : MonoBehaviour
 {
+    [SerializeField] private GameObject errorMessage;
+
+
     private void Start()
     {
         IEnumerator coroutine = LoginRoutine();
@@ -42,6 +46,7 @@ public class UserHandler : MonoBehaviour
             }
             else
             {
+                errorMessage.SetActive(true);
                 Debug.Log("Start session failed" + response.Error);
                 done = true;
             }

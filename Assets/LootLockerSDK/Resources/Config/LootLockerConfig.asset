@@ -18,7 +18,7 @@ MonoBehaviour:
   domainKey: r52kmp00
   gameID: 0
   game_version: 1.0.2.0
-  deviceID: 
+  deviceID: f26cf590-224e-436b-a3ef-f2aa2987d315
   platform: 4
   developmentMode: 1
   url: https://api.lootlocker.io/game/v1
@@ -26,5 +26,5 @@ MonoBehaviour:
   playerUrl: https://api.lootlocker.io/player
   userUrl: https://api.lootlocker.io/game
   baseUrl: https://api.lootlocker.io
-  currentDebugLevel: 1
+  currentDebugLevel: 0
   allowTokenRefresh: 1

@@ -115,7 +115,7 @@ public class EnemyAI : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, desiredAngle), _turnSpeed * Time.deltaTime);
                 yield return null;
             }
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(Random.Range(0.6f, 1.2f));
             desiredAngle = desiredAngle == angle0 ? angle1 : angle0;
         }
     }

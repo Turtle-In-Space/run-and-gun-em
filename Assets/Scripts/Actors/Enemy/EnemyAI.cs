@@ -110,7 +110,7 @@ public class EnemyAI : MonoBehaviour
 
         while (passiveSearch)
         {
-            while (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, desiredAngle)) > searchTolerance)
+            while (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, desiredAngle)) > searchTolerance && passiveSearch)
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, desiredAngle), _turnSpeed * Time.deltaTime);
                 yield return null;

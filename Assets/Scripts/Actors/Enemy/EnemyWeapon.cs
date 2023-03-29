@@ -29,11 +29,11 @@ public class EnemyWeapon : MonoBehaviour
      */
     public void Shoot()
     {
-        if (ammoCount == 0)
+        if (ammoCount == 0 && !animator.GetBool("isReloading"))
         {
             Reload();
         }
-        else if (Time.time - lastShot > bulletDelay)
+        else if (Time.time - lastShot > bulletDelay && !animator.GetBool("isReloading"))
         {
             particleGunSmoke.Play();
             animator.SetBool("isShooting", true);
@@ -55,6 +55,7 @@ public class EnemyWeapon : MonoBehaviour
      */
     public void OnReloadFinished()
     {
+        animator.SetBool("isReloading", false);
         ammoCount = 15;
     }
 
@@ -64,7 +65,7 @@ public class EnemyWeapon : MonoBehaviour
     private void Reload()
     {
         animator.SetBool("isShooting", false);
-        animator.SetTrigger("Reload");
+        animator.SetBool("isReloading", true);
         AudioManager.instance.Play("PistolReload");
     }
 }

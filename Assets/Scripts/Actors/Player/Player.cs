@@ -16,7 +16,8 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            TakeDamage(1);
+            TakeDamage(0);
+            //TODO: god mode
         }
     }
 

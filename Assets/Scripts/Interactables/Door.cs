@@ -32,7 +32,7 @@ public class Door : MonoBehaviour
             Destroy(transform.parent.gameObject);
         }
     }
-
+    //TODO test tes tes
     /*
      * Visar när spelare kan spränga dörr
      */

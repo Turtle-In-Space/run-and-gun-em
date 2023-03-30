@@ -11,6 +11,7 @@ public class EnemyAI : MonoBehaviour
     private EnemySight enemySight;
     private Transform playerTransform;
     private new Rigidbody2D rigidbody;
+    private new Renderer renderer;
     private Animator animator;
 
     private Vector2 lastKnownPosition;
@@ -24,6 +25,7 @@ public class EnemyAI : MonoBehaviour
     private int health = 2;
     private bool isMovingToPlayer;
     private bool passiveSearch;
+    private bool canShoot;
 
 
     private void Awake()
@@ -32,12 +34,12 @@ public class EnemyAI : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         weapon = GetComponent<EnemyWeapon>();
+        renderer = GetComponent<Renderer>();
     }
 
     private void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-
         passiveSearch = true;
         IEnumerator coroutine = PassiveSearchRoutine();
         StartCoroutine(coroutine);
@@ -51,7 +53,7 @@ public class EnemyAI : MonoBehaviour
             weapon.Shoot();
         }
     }
-
+    
     private void FixedUpdate()
     {
         if (isMovingToPlayer)
@@ -94,7 +96,6 @@ public class EnemyAI : MonoBehaviour
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, desiredAngle), _turnSpeed * Time.deltaTime);
             yield return null;
-            
         }
     }
 
@@ -103,8 +104,8 @@ public class EnemyAI : MonoBehaviour
      */
     private IEnumerator PassiveSearchRoutine()
     {
-        float angle0 = transform.eulerAngles.z + searchAngle;
-        float angle1 = transform.eulerAngles.z - searchAngle;
+        float angle0 = transform.eulerAngles.z + searchAngle + Random.Range(0, 10);
+        float angle1 = transform.eulerAngles.z - searchAngle + Random.Range(0, 10);
         float desiredAngle = angle0;
         float _turnSpeed = turnSpeed * 0.05f;
 
@@ -123,10 +124,12 @@ public class EnemyAI : MonoBehaviour
     /*
      * Vänder sig mot target
      * Måste kallas flera gånger
+     * Enemy ser nu spelaren
      */
     private void LookAt(Vector2 target)
     {
         passiveSearch = false;
+
         Vector2 lookDirection = target - (Vector2)transform.position;
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle), turnSpeed * Time.deltaTime);

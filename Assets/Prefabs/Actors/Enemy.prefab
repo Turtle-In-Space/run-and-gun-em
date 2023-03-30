@@ -79,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: fe71e1f4d85fc4e00a78fffb7e18a063, type: 3}
   m_Color: {r: 1, g: 0.5613208, b: 0.5613208, a: 1}
   m_FlipX: 0
@@ -143,7 +143,6 @@ MonoBehaviour:
   bloodShot: {fileID: 2710046615591816519, guid: 1b4d590c04b784d2a8286f2f20b05554, type: 3}
   bloodDeath: {fileID: 4659236983830244905, guid: 8e29e992174f645c19c0cdc41b33b236, type: 3}
   healthKit: {fileID: 7112800524789578067, guid: cfeb10e8f82af4b4ead21380b0eedf4e, type: 3}
-  searchAngle: 20
 --- !u!114 &5998698179548170445
 MonoBehaviour:
   m_ObjectHideFlags: 0

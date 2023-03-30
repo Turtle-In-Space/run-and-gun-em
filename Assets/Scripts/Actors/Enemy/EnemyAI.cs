@@ -6,6 +6,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private GameObject bloodShot;
     [SerializeField] private GameObject bloodDeath;
     [SerializeField] private GameObject healthKit;
+    [SerializeField] private GameObject EnemyWarning;
 
     private EnemyWeapon weapon;
     private EnemySight enemySight;
@@ -25,7 +26,7 @@ public class EnemyAI : MonoBehaviour
     private int health = 2;
     private bool isMovingToPlayer;
     private bool passiveSearch;
-    private bool canShoot;
+    private bool isWarningPlaced;
 
 
     private void Awake()

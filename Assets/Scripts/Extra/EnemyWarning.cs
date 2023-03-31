@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyWarning : MonoBehaviour
 {
-    public Transform player;
+    private GameObject enemy;
+    private Transform playerTransform;
     private new Camera camera;
 
     private Vector2 enemyPosition;
@@ -15,13 +14,34 @@ public class EnemyWarning : MonoBehaviour
     private void Start()
     {
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        enemyPosition = transform.position;
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        enemy = transform.parent.gameObject;
+        enemyPosition = enemy.transform.position;
     }
 
     private void Update()
     {
-        Vector2 direction = (enemyPosition - (Vector2)player.position).normalized;
-        Ray ray = new(player.position, direction);
+        if (enemy.GetComponent<Renderer>().isVisible)
+        {
+            enemy.GetComponent<EnemyAI>().isWarningPlaced = false;
+            Destroy(gameObject);
+        }
+        ChangePosition();
+    }
+
+    private void LateUpdate()
+    {
+        transform.rotation = Quaternion.Euler(0, 0, enemy.transform.rotation.z * -1);
+    }
+
+    /*
+     * Skickar en ray mot kanterna av kameran
+     * sätter sätter positonen nära rätt kant
+     */
+    private void ChangePosition()
+    {
+        Vector2 direction = (enemyPosition - (Vector2)playerTransform.position).normalized;
+        Ray ray = new(playerTransform.position, direction);
         GeometryUtility.CalculateFrustumPlanes(camera, planes);
         float minDistance = float.MaxValue;
 
@@ -37,6 +57,6 @@ public class EnemyWarning : MonoBehaviour
         }
 
         minDistance -= offset;
-        transform.position = (Vector2)player.position + minDistance * direction;
+        transform.position = (Vector2)playerTransform.position + minDistance * direction;
     }
 }

@@ -3,6 +3,8 @@ using System.Collections;
 
 public class EnemyAI : MonoBehaviour
 {
+    public bool isWarningPlaced;
+
     [SerializeField] private GameObject bloodShot;
     [SerializeField] private GameObject bloodDeath;
     [SerializeField] private GameObject healthKit;
@@ -19,14 +21,15 @@ public class EnemyAI : MonoBehaviour
     private IEnumerator coroutine;
 
     private readonly float turnSpeed = 30f;
+    private readonly float warningDelay = 0.7f;
     private readonly int healthKitDropChance = 20;
     private readonly int moveSpeed = 8;
     private readonly int searchAngle = 30;
     private readonly int searchTolerance = 3;
+    private float warningTimer = 0;
     private int health = 2;
     private bool isMovingToPlayer;
     private bool passiveSearch;
-    private bool isWarningPlaced;
 
 
     private void Awake()
@@ -50,8 +53,16 @@ public class EnemyAI : MonoBehaviour
     {
         if (enemySight.canSeePlayer)
         {
+            if(!renderer.isVisible && !isWarningPlaced)
+            {
+                PlaceWarning();
+            }
+
             LookAt(playerTransform.position);
-            weapon.Shoot();
+            if (Time.time - warningTimer > warningDelay)
+            {
+                weapon.Shoot();
+            }
         }
     }
     
@@ -196,6 +207,21 @@ public class EnemyAI : MonoBehaviour
         {
             isMovingToPlayer = false;
             animator.SetBool("isMoving", false);
+        }
+    }
+
+    /*
+     * Sätter ut en varning
+     * Kallas då spelaren inte ser fienden men fienden ser spelaren
+     */
+    private void PlaceWarning()
+    {
+        Instantiate(EnemyWarning, transform.position, Quaternion.identity, transform);
+        isWarningPlaced = true;
+
+        if (passiveSearch)
+        {
+            warningTimer = Time.time;
         }
     }
 }

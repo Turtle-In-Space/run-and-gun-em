@@ -56,7 +56,7 @@ public class PlayerWeapon : MonoBehaviour
                     currentAmmo = HUD.instance.SetAmmoCount(currentAmmo - 1);
                 }
             }
-            else
+            else if (currentAmmo == 0 && !animator.GetBool("isReloading"))
             {
                 AudioManager.instance.Play("AREmpty");
             }

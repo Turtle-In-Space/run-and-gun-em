@@ -79,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: fe71e1f4d85fc4e00a78fffb7e18a063, type: 3}
   m_Color: {r: 1, g: 0.5613208, b: 0.5613208, a: 1}
   m_FlipX: 0
@@ -140,10 +140,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b73314d6d6394132b4fce49f6783cae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isWarningPlaced: 0
   bloodShot: {fileID: 2710046615591816519, guid: 1b4d590c04b784d2a8286f2f20b05554, type: 3}
   bloodDeath: {fileID: 4659236983830244905, guid: 8e29e992174f645c19c0cdc41b33b236, type: 3}
   healthKit: {fileID: 7112800524789578067, guid: cfeb10e8f82af4b4ead21380b0eedf4e, type: 3}
-  searchAngle: 20
+  EnemyWarning: {fileID: 402301078767540943, guid: 15424c47795504258b32b55d982fe536, type: 3}
 --- !u!114 &5998698179548170445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,16 +268,16 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 23.627388, y: 6.594276}
-      - {x: 17.803902, y: 8.213253}
-      - {x: 5.2974057, y: 8.355614}
+    - - {x: 38.491634, y: 8.768463}
+      - {x: 30.19848, y: 7.541259}
+      - {x: 7.3455596, y: 5.039554}
       - {x: -2.2842581, y: 3.822438}
       - {x: -4.616997, y: -0.25311852}
       - {x: -2.0587382, y: -3.907975}
-      - {x: 5.0398636, y: -7.157784}
-      - {x: 18.489403, y: -7.391079}
-      - {x: 24.37702, y: -5.150891}
-      - {x: 27.694185, y: 1.0544827}
+      - {x: 6.697894, y: -4.914567}
+      - {x: 30.09589, y: -6.9810843}
+      - {x: 38.809826, y: -7.579236}
+      - {x: 39.978424, y: 0.037856102}
 --- !u!114 &4168324010262604797
 MonoBehaviour:
   m_ObjectHideFlags: 0

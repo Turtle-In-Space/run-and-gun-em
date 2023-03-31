@@ -3,24 +3,30 @@ using System.Collections;
 
 public class EnemyAI : MonoBehaviour
 {
+    public bool isWarningPlaced;
+
     [SerializeField] private GameObject bloodShot;
     [SerializeField] private GameObject bloodDeath;
     [SerializeField] private GameObject healthKit;
+    [SerializeField] private GameObject EnemyWarning;
 
     private EnemyWeapon weapon;
     private EnemySight enemySight;
     private Transform playerTransform;
     private new Rigidbody2D rigidbody;
+    private new Renderer renderer;
     private Animator animator;
 
     private Vector2 lastKnownPosition;
     private IEnumerator coroutine;
 
     private readonly float turnSpeed = 30f;
+    private readonly float warningDelay = 0.7f;
     private readonly int healthKitDropChance = 20;
     private readonly int moveSpeed = 8;
     private readonly int searchAngle = 30;
     private readonly int searchTolerance = 3;
+    private float warningTimer = 0;
     private int health = 2;
     private bool isMovingToPlayer;
     private bool passiveSearch;
@@ -32,12 +38,12 @@ public class EnemyAI : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         weapon = GetComponent<EnemyWeapon>();
+        renderer = GetComponent<Renderer>();
     }
 
     private void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-
         passiveSearch = true;
         IEnumerator coroutine = PassiveSearchRoutine();
         StartCoroutine(coroutine);
@@ -47,11 +53,19 @@ public class EnemyAI : MonoBehaviour
     {
         if (enemySight.canSeePlayer)
         {
+            if(!renderer.isVisible && !isWarningPlaced)
+            {
+                PlaceWarning();
+            }
+
             LookAt(playerTransform.position);
-            weapon.Shoot();
+            if (Time.time - warningTimer > warningDelay)
+            {
+                weapon.Shoot();
+            }
         }
     }
-
+    
     private void FixedUpdate()
     {
         if (isMovingToPlayer)
@@ -94,7 +108,6 @@ public class EnemyAI : MonoBehaviour
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, desiredAngle), _turnSpeed * Time.deltaTime);
             yield return null;
-            
         }
     }
 
@@ -103,8 +116,8 @@ public class EnemyAI : MonoBehaviour
      */
     private IEnumerator PassiveSearchRoutine()
     {
-        float angle0 = transform.eulerAngles.z + searchAngle;
-        float angle1 = transform.eulerAngles.z - searchAngle;
+        float angle0 = transform.eulerAngles.z + searchAngle + Random.Range(0, 10);
+        float angle1 = transform.eulerAngles.z - searchAngle + Random.Range(0, 10);
         float desiredAngle = angle0;
         float _turnSpeed = turnSpeed * 0.05f;
 
@@ -123,10 +136,12 @@ public class EnemyAI : MonoBehaviour
     /*
      * Vänder sig mot target
      * Måste kallas flera gånger
+     * Enemy ser nu spelaren
      */
     private void LookAt(Vector2 target)
     {
         passiveSearch = false;
+
         Vector2 lookDirection = target - (Vector2)transform.position;
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle), turnSpeed * Time.deltaTime);
@@ -192,6 +207,21 @@ public class EnemyAI : MonoBehaviour
         {
             isMovingToPlayer = false;
             animator.SetBool("isMoving", false);
+        }
+    }
+
+    /*
+     * Sätter ut en varning
+     * Kallas då spelaren inte ser fienden men fienden ser spelaren
+     */
+    private void PlaceWarning()
+    {
+        Instantiate(EnemyWarning, transform.position, Quaternion.identity, transform);
+        isWarningPlaced = true;
+
+        if (passiveSearch)
+        {
+            warningTimer = Time.time;
         }
     }
 }

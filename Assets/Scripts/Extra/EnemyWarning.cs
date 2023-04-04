@@ -11,12 +11,16 @@ public class EnemyWarning : MonoBehaviour
     readonly float offset = 2;
 
 
+    private void Awake()
+    {
+        enemy = transform.parent.gameObject;
+        enemyPosition = enemy.transform.position;
+    }
+
     private void Start()
     {
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        enemy = transform.parent.gameObject;
-        enemyPosition = enemy.transform.position;
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;        
     }
 
     private void Update()
@@ -26,9 +30,16 @@ public class EnemyWarning : MonoBehaviour
             enemy.GetComponent<EnemyAI>().isWarningPlaced = false;
             Destroy(gameObject);
         }
-        ChangePosition();
+        if (playerTransform)
+        {
+            ChangePosition();
+        }       
     }
 
+    /*
+     * Går emot parent rotation
+     * Står alltid rakt upp
+     */
     private void LateUpdate()
     {
         transform.rotation = Quaternion.Euler(0, 0, enemy.transform.rotation.z * -1);

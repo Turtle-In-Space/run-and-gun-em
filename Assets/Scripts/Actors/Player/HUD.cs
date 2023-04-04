@@ -24,7 +24,6 @@ public class HUD : MonoBehaviour
     private void Start()
     {
         heartAnimator.speed = baseHeartSpeed;
-        AddScore(0);
     }
 
     public int SetAmmoCount(int newAmmo)

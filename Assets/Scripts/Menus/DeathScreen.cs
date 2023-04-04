@@ -33,6 +33,10 @@ public class DeathScreen : MonoBehaviour
         submitScore.SubmitScore(GameData.Score);
     }
 
+    /*
+     * Ställer om game info
+     * Startar Game scene
+     */
     public void Retry()
     {
         GameData.isPlayerDead = false;
@@ -45,6 +49,9 @@ public class DeathScreen : MonoBehaviour
         levelLoader.ChangeLevel((int)Scene.Game);
     }
 
+    /*
+     * Går till main menu
+     */
     public void LoadMainMenu()
     {
         Time.timeScale = 1f;

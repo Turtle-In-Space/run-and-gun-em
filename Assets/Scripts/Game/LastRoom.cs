@@ -54,6 +54,9 @@ public class LastRoom : MonoBehaviour
         }
     }
 
+    /*
+     * byter färg på sista rummet och gör de möjligt att lämna
+     */
     public void OnLevelFinished()
     {
         isLevelFinished = true;

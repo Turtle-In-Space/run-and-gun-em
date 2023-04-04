@@ -11,6 +11,10 @@ public class HealthKit : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
+    /*
+     * När spelare går över
+     * spela effekt 
+     */
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

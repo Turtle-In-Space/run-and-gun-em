@@ -55,11 +55,6 @@ public class AudioManager : MonoBehaviour
         {
             sound.source.volume = volume;
         }
-        else
-        {
-            Debug.Log("Could not change volume to " + name + ", did not find!");
-            return;
-        }
     }
 
     /*

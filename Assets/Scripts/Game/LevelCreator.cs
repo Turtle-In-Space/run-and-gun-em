@@ -46,9 +46,11 @@ public class LevelCreator : MonoBehaviour
     }
 
     /*
-     * Sätter ut ett rum på en giltig plats
-     * Spawnar dörrar
-     * Om sista rummet är ogiltigt skapa en ny bana
+     * Sätter ut rum
+     * Om giltigt sätt ut dörrar
+     * 
+     * Annars ta bort och avbryt
+     * om sista rummet ta bort alla rum och försök igen
      */
     private void SpawnRoom(int roomID, DoorData entryDoor)
     {
@@ -136,6 +138,9 @@ public class LevelCreator : MonoBehaviour
         }
     }
 
+    /*
+     * Tar bort alla rum
+     */
     private void RemoveAllRooms()
     {
         for (int i = 0; i < roomParent.childCount; i++)

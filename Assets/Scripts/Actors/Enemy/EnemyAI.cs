@@ -49,6 +49,11 @@ public class EnemyAI : MonoBehaviour
         StartCoroutine(coroutine);
     }
 
+    /*
+     * Kollar om kan se spelare
+     * Sätter ut varnig
+     * Skjuter
+     */
     private void Update()
     {
         if (enemySight.canSeePlayer)

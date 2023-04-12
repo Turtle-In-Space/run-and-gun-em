@@ -64,10 +64,10 @@ public class Door : MonoBehaviour
 
         foreach (Collider2D enemy in enemies)
         {
-            EnemyAI enemyAI = enemy.gameObject.GetComponent<EnemyAI>();
+            EnemyMovement movement = enemy.gameObject.GetComponent<EnemyMovement>();
 
-            IEnumerator coroutine = enemyAI.LookAtRoutine(transform.position);
-            enemyAI.StartCoroutine(coroutine);
+            IEnumerator coroutine = movement.LookAtRoutine(transform.position);
+            movement.StartCoroutine(coroutine);
         }
     }
 }

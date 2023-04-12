@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 706661820256500830}
   - component: {fileID: 706661820256500824}
   - component: {fileID: 5998698179548170445}
+  - component: {fileID: 4474109388381028572}
   - component: {fileID: 6125459363672900706}
   m_Layer: 8
   m_Name: Enemy
@@ -145,6 +146,8 @@ MonoBehaviour:
   bloodDeath: {fileID: 4659236983830244905, guid: 8e29e992174f645c19c0cdc41b33b236, type: 3}
   healthKit: {fileID: 7112800524789578067, guid: cfeb10e8f82af4b4ead21380b0eedf4e, type: 3}
   EnemyWarning: {fileID: 402301078767540943, guid: 15424c47795504258b32b55d982fe536, type: 3}
+  passiveSearch: 0
+  isMovingToPlayer: 0
 --- !u!114 &5998698179548170445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +161,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8796829914936609648, guid: c42632008b1ad44dfb99d0d9ae66a24d, type: 3}
+--- !u!114 &4474109388381028572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706661820256500827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c16877d86d89845a0acd111f4f6e0991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &6125459363672900706
 Animator:
   serializedVersion: 4

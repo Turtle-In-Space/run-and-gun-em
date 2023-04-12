@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class PlayerMovment : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    private new UnityEngine.Camera camera;
+    private new Camera camera;
     private new Rigidbody2D rigidbody;
     private Animator animator;
 
@@ -20,7 +20,7 @@ public class PlayerMovment : MonoBehaviour
 
     private void Start()
     {
-        camera = UnityEngine.Camera.main;
+        camera = Camera.main;
     }
 
     private void Update()

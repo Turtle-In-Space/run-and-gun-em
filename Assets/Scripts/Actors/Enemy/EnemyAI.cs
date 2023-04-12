@@ -4,6 +4,8 @@ using System.Collections;
 public class EnemyAI : MonoBehaviour
 {
     public bool isWarningPlaced;
+    public bool passiveSearch;
+    public bool isMovingToPlayer;
 
     [SerializeField] private GameObject bloodShot;
     [SerializeField] private GameObject bloodDeath;
@@ -11,11 +13,11 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private GameObject EnemyWarning;
 
     private EnemyWeapon weapon;
-    private EnemySight enemySight;
+    private EnemySight sight;
     private Transform playerTransform;
-    private new Rigidbody2D rigidbody;
     private new Renderer renderer;
     private Animator animator;
+    private EnemyMovement movement;
 
     private Vector2 lastKnownPosition;
     private IEnumerator coroutine;
@@ -23,22 +25,19 @@ public class EnemyAI : MonoBehaviour
     private readonly float turnSpeed = 30f;
     private readonly float warningDelay = 0.7f;
     private readonly int healthKitDropChance = 20;
-    private readonly int moveSpeed = 8;
     private readonly int searchAngle = 30;
     private readonly int searchTolerance = 3;
     private float warningTimer = 0;
     private int health = 2;
-    private bool isMovingToPlayer;
-    private bool passiveSearch;
-
+    
 
     private void Awake()
     {
-        enemySight = GetComponentInChildren<EnemySight>();
-        rigidbody = GetComponent<Rigidbody2D>();
+        sight = GetComponentInChildren<EnemySight>();
         animator = GetComponent<Animator>();
         weapon = GetComponent<EnemyWeapon>();
         renderer = GetComponent<Renderer>();
+        movement = GetComponent<EnemyMovement>();
     }
 
     private void Start()
@@ -56,14 +55,14 @@ public class EnemyAI : MonoBehaviour
      */
     private void Update()
     {
-        if (enemySight.canSeePlayer)
+        if (sight.canSeePlayer)
         {
             if(!renderer.isVisible && !isWarningPlaced)
             {
                 PlaceWarning();
             }
 
-            LookAt(playerTransform.position);
+            movement.LookAt(playerTransform.position);
             if (Time.time - warningTimer > warningDelay)
             {
                 weapon.Shoot();
@@ -75,7 +74,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (isMovingToPlayer)
         {
-            MoveTo(lastKnownPosition);
+            movement.MoveTo(lastKnownPosition);
         }
     }
 
@@ -95,25 +94,6 @@ public class EnemyAI : MonoBehaviour
         animator.SetBool("isShooting", false);
         lastKnownPosition = lastPosition;
         isMovingToPlayer = true;
-    }
-
-    /*
-     * Vänder Enemy mot target om Enemy inte ser spelaren
-     * Kan kallas 1 gång och körs över flera frames
-     */
-    public IEnumerator LookAtRoutine(Vector2 target)
-    {
-        passiveSearch = false;
-        yield return null;
-        float _turnSpeed = turnSpeed * 0.1f;
-        Vector2 desiredDirection = target - (Vector2)transform.position;
-        float desiredAngle = Mathf.Atan2(desiredDirection.y, desiredDirection.x) * Mathf.Rad2Deg;
-
-        while (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, desiredAngle)) > searchTolerance && !enemySight.canSeePlayer)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, desiredAngle), _turnSpeed * Time.deltaTime);
-            yield return null;
-        }
     }
 
     /*
@@ -137,20 +117,7 @@ public class EnemyAI : MonoBehaviour
             desiredAngle = desiredAngle == angle0 ? angle1 : angle0;
         }
     }
-
-    /*
-     * Vänder sig mot target
-     * Måste kallas flera gånger
-     * Enemy ser nu spelaren
-     */
-    private void LookAt(Vector2 target)
-    {
-        passiveSearch = false;
-
-        Vector2 lookDirection = target - (Vector2)transform.position;
-        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle), turnSpeed * Time.deltaTime);
-    }    
+   
 
     /*
      * Sänker fiendens hp med amount
@@ -169,7 +136,7 @@ public class EnemyAI : MonoBehaviour
             AudioManager.instance.Play("EnemyHurt");
             Instantiate(bloodShot, transform.position, Quaternion.identity);
             
-            coroutine = LookAtRoutine(playerTransform.position);
+            coroutine = movement.LookAtRoutine(playerTransform.position);
             StartCoroutine(coroutine);         
         }
     }
@@ -194,25 +161,6 @@ public class EnemyAI : MonoBehaviour
         }
 
         Destroy(gameObject);
-    }
-
-    /*
-     * Flyttar enemy till position
-     * Stannar när nästan där
-     */
-    private void MoveTo(Vector2 position)
-    {
-        LookAt(position);
-
-        animator.SetBool("isMoving", true);
-        Vector2 direction = position - (Vector2)transform.position;
-        rigidbody.MovePosition((Vector2)transform.position + (moveSpeed * Time.deltaTime * direction.normalized));
-
-        if (Vector2.Distance(transform.position, position) < 0.1)
-        {
-            isMovingToPlayer = false;
-            animator.SetBool("isMoving", false);
-        }
     }
 
     /*

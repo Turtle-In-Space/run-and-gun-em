@@ -11,6 +11,7 @@ public class Door : MonoBehaviour
     private GameObject EKey;
 
     private readonly int enemyLayerMask = 1 << 8;
+    private readonly int noiceRadius = 15;
 
 
     private void Awake()
@@ -60,7 +61,7 @@ public class Door : MonoBehaviour
      */
     private void AlertEnemies()
     {
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, 15, enemyLayerMask);
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, noiceRadius, enemyLayerMask);
 
         foreach (Collider2D enemy in enemies)
         {

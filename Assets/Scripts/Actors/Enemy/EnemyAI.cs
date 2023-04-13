@@ -4,8 +4,8 @@ using System.Collections;
 public class EnemyAI : MonoBehaviour
 {
     public bool isWarningPlaced;
-    public bool passiveSearch;
     public bool isMovingToPlayer;
+    public bool passiveSearch;
 
     [SerializeField] private GameObject bloodShot;
     [SerializeField] private GameObject bloodDeath;
@@ -22,11 +22,9 @@ public class EnemyAI : MonoBehaviour
     private Vector2 lastKnownPosition;
     private IEnumerator coroutine;
 
-    private readonly float turnSpeed = 30f;
     private readonly float warningDelay = 0.7f;
     private readonly int healthKitDropChance = 20;
-    private readonly int searchAngle = 30;
-    private readonly int searchTolerance = 3;
+    
     private float warningTimer = 0;
     private int health = 2;
     
@@ -44,7 +42,7 @@ public class EnemyAI : MonoBehaviour
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         passiveSearch = true;
-        IEnumerator coroutine = PassiveSearchRoutine();
+        IEnumerator coroutine = movement.PassiveSearchRoutine();
         StartCoroutine(coroutine);
     }
 
@@ -94,30 +92,7 @@ public class EnemyAI : MonoBehaviour
         animator.SetBool("isShooting", false);
         lastKnownPosition = lastPosition;
         isMovingToPlayer = true;
-    }
-
-    /*
-     * Fienden vänder sig om då den inte har sett spelaren än
-     */
-    private IEnumerator PassiveSearchRoutine()
-    {
-        float angle0 = transform.eulerAngles.z + searchAngle + Random.Range(0, 10);
-        float angle1 = transform.eulerAngles.z - searchAngle + Random.Range(0, 10);
-        float desiredAngle = angle0;
-        float _turnSpeed = turnSpeed * 0.05f;
-
-        while (passiveSearch)
-        {
-            while (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, desiredAngle)) > searchTolerance && passiveSearch)
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, desiredAngle), _turnSpeed * Time.deltaTime);
-                yield return null;
-            }
-            yield return new WaitForSeconds(Random.Range(0.6f, 1.2f));
-            desiredAngle = desiredAngle == angle0 ? angle1 : angle0;
-        }
-    }
-   
+    }       
 
     /*
      * Sänker fiendens hp med amount
